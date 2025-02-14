@@ -15,11 +15,10 @@ Problemas? Por favor, recomendamos a ler a documentação [aqui](https://www.you
 * Este veiculo tem suporte a:
     * Medir a temperatura;
     * Medir os gases no local;
-    * Medir a humidade;
     * Visualizar o local, com cameras;
     * Transportar Pesos;
     * Enviar dados para a _API_;
-    * Movimentar-se (Direita, Esquerda, Cima, Baixo);
+    * Movimentar-se (Direita, Esquerda, Frente, trás);
     * Calcular o peso que o carro contem;
     * ...
 
