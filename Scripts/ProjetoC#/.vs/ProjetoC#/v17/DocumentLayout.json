@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|e:\\github\\s.t.a.r\\scripts\\projetoc#\\projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|solutionrelative:projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|e:\\github\\s.t.a.r\\scripts\\projetoc#\\projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|solutionrelative:projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
@@ -19,6 +23,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs",
+              "RelativeDocumentMoniker": "ProjetoC#\\Form1.cs",
+              "ToolTip": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs",
+              "RelativeToolTip": "ProjetoC#\\Form1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-20T19:42:55.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs",
               "RelativeDocumentMoniker": "ProjetoC#\\Form1.cs",
