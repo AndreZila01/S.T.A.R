@@ -33,27 +33,29 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.panel4 = new System.Windows.Forms.Panel();
 			this.panel5 = new System.Windows.Forms.Panel();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.pictureBox4 = new System.Windows.Forms.PictureBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.button4 = new System.Windows.Forms.Button();
+			this.panel4 = new System.Windows.Forms.Panel();
+			this.label3 = new System.Windows.Forms.Label();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.btnInput = new System.Windows.Forms.Button();
+			this.btnCopy = new System.Windows.Forms.Button();
+			this.btnClear = new System.Windows.Forms.Button();
+			this.txtInput = new System.Windows.Forms.TextBox();
+			this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.pctDirectionalPad = new System.Windows.Forms.PictureBox();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.button4 = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.panel3.SuspendLayout();
-			this.panel4.SuspendLayout();
 			this.panel5.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+			this.panel4.SuspendLayout();
+			this.panel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pctDirectionalPad)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -105,28 +107,6 @@
 			this.panel2.Size = new System.Drawing.Size(800, 392);
 			this.panel2.TabIndex = 1;
 			// 
-			// panel3
-			// 
-			this.panel3.Controls.Add(this.button3);
-			this.panel3.Controls.Add(this.button2);
-			this.panel3.Controls.Add(this.button1);
-			this.panel3.Controls.Add(this.textBox1);
-			this.panel3.Controls.Add(this.pictureBox4);
-			this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-			this.panel3.Location = new System.Drawing.Point(0, 0);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(280, 392);
-			this.panel3.TabIndex = 0;
-			// 
-			// panel4
-			// 
-			this.panel4.Controls.Add(this.label3);
-			this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel4.Location = new System.Drawing.Point(500, 0);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(300, 392);
-			this.panel4.TabIndex = 1;
-			// 
 			// panel5
 			// 
 			this.panel5.Controls.Add(this.label4);
@@ -137,63 +117,127 @@
 			this.panel5.Size = new System.Drawing.Size(220, 392);
 			this.panel5.TabIndex = 2;
 			// 
-			// textBox1
+			// label4
 			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(54, 40);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(121, 13);
+			this.label4.TabIndex = 1;
+			this.label4.Text = "Ping com Arduino : 0 ms";
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(6, 56);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(208, 23);
+			this.button4.TabIndex = 0;
+			this.button4.Text = "Novo Form só com Dados";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Visible = false;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
+			// 
+			// panel4
+			// 
+			this.panel4.Controls.Add(this.label3);
+			this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+			this.panel4.Location = new System.Drawing.Point(500, 0);
+			this.panel4.Name = "panel4";
+			this.panel4.Size = new System.Drawing.Size(300, 392);
+			this.panel4.TabIndex = 1;
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(123, 191);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(84, 13);
+			this.label3.TabIndex = 0;
+			this.label3.Text = "Data do Arduino";
+			// 
+			// panel3
+			// 
+			this.panel3.Controls.Add(this.btnInput);
+			this.panel3.Controls.Add(this.btnCopy);
+			this.panel3.Controls.Add(this.btnClear);
+			this.panel3.Controls.Add(this.txtInput);
+			this.panel3.Controls.Add(this.pctDirectionalPad);
+			this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+			this.panel3.Location = new System.Drawing.Point(0, 0);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(280, 392);
+			this.panel3.TabIndex = 0;
+			// 
+			// btnInput
+			// 
+			this.btnInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnInput.Location = new System.Drawing.Point(197, 357);
+			this.btnInput.Name = "btnInput";
+			this.btnInput.Size = new System.Drawing.Size(70, 23);
+			this.btnInput.TabIndex = 4;
+			this.btnInput.Text = "Input";
+			this.btnInput.UseVisualStyleBackColor = true;
+			this.btnInput.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// btnCopy
+			// 
+			this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnCopy.Location = new System.Drawing.Point(104, 357);
+			this.btnCopy.Name = "btnCopy";
+			this.btnCopy.Size = new System.Drawing.Size(70, 23);
+			this.btnCopy.TabIndex = 3;
+			this.btnCopy.Text = "Copy";
+			this.btnCopy.UseVisualStyleBackColor = true;
+			this.btnCopy.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// btnClear
+			// 
+			this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnClear.Location = new System.Drawing.Point(12, 356);
+			this.btnClear.Name = "btnClear";
+			this.btnClear.Size = new System.Drawing.Size(70, 23);
+			this.btnClear.TabIndex = 2;
+			this.btnClear.Text = "Clear";
+			this.btnClear.UseVisualStyleBackColor = true;
+			this.btnClear.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// txtInput
+			// 
+			this.txtInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(12, 215);
-			this.textBox1.Multiline = true;
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size(255, 135);
-			this.textBox1.TabIndex = 1;
+			this.txtInput.Location = new System.Drawing.Point(12, 215);
+			this.txtInput.Multiline = true;
+			this.txtInput.Name = "txtInput";
+			this.txtInput.ReadOnly = true;
+			this.txtInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.txtInput.Size = new System.Drawing.Size(255, 135);
+			this.txtInput.TabIndex = 1;
 			// 
-			// button1
+			// backgroundWorker1
 			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+			this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+			// 
+			// timer1
+			// 
+			this.timer1.Interval = 250;
+			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+			// 
+			// pctDirectionalPad
+			// 
+			this.pctDirectionalPad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(12, 356);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(70, 23);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "Clear";
-			this.button1.UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(104, 357);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(70, 23);
-			this.button2.TabIndex = 3;
-			this.button2.Text = "Copy";
-			this.button2.UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(197, 357);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(70, 23);
-			this.button3.TabIndex = 4;
-			this.button3.Text = "Input";
-			this.button3.UseVisualStyleBackColor = true;
-			// 
-			// pictureBox4
-			// 
-			this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pictureBox4.Image = global::ProjetoC_.Properties.Resources.directionalpad;
-			this.pictureBox4.Location = new System.Drawing.Point(12, 10);
-			this.pictureBox4.Name = "pictureBox4";
-			this.pictureBox4.Size = new System.Drawing.Size(255, 194);
-			this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureBox4.TabIndex = 0;
-			this.pictureBox4.TabStop = false;
+			this.pctDirectionalPad.Image = global::ProjetoC_.Properties.Resources.directionalpad;
+			this.pctDirectionalPad.Location = new System.Drawing.Point(12, 10);
+			this.pctDirectionalPad.Name = "pctDirectionalPad";
+			this.pctDirectionalPad.Size = new System.Drawing.Size(255, 194);
+			this.pctDirectionalPad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pctDirectionalPad.TabIndex = 0;
+			this.pctDirectionalPad.TabStop = false;
 			// 
 			// pictureBox3
 			// 
@@ -231,33 +275,6 @@
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(123, 191);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(84, 13);
-			this.label3.TabIndex = 0;
-			this.label3.Text = "Data do Arduino";
-			// 
-			// button4
-			// 
-			this.button4.Location = new System.Drawing.Point(6, 56);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(208, 23);
-			this.button4.TabIndex = 0;
-			this.button4.Text = "Novo Form só com Dados";
-			this.button4.UseVisualStyleBackColor = true;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(54, 40);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(121, 13);
-			this.label4.TabIndex = 1;
-			this.label4.Text = "Ping com Arduino : 0 ms";
-			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,16 +286,19 @@
 			this.Name = "Form1";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Form1";
+			this.Load += new System.EventHandler(this.Form1_Load);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
-			this.panel3.ResumeLayout(false);
-			this.panel3.PerformLayout();
-			this.panel4.ResumeLayout(false);
-			this.panel4.PerformLayout();
 			this.panel5.ResumeLayout(false);
 			this.panel5.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+			this.panel4.ResumeLayout(false);
+			this.panel4.PerformLayout();
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pctDirectionalPad)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -299,14 +319,16 @@
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Panel panel4;
 		private System.Windows.Forms.Panel panel5;
-		private System.Windows.Forms.PictureBox pictureBox4;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.PictureBox pctDirectionalPad;
+		private System.Windows.Forms.TextBox txtInput;
+		private System.Windows.Forms.Button btnClear;
+		private System.Windows.Forms.Button btnCopy;
+		private System.Windows.Forms.Button btnInput;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Label label4;
+		private System.ComponentModel.BackgroundWorker backgroundWorker1;
+		private System.Windows.Forms.Timer timer1;
 	}
 }
 

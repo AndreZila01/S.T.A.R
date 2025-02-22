@@ -83,9 +83,49 @@ namespace ProjetoC_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DirectionalPad_BD {
+            get {
+                object obj = ResourceManager.GetObject("DirectionalPad_BD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DirectionalPad_BE {
+            get {
+                object obj = ResourceManager.GetObject("DirectionalPad_BE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DirectionalPad_C {
             get {
                 object obj = ResourceManager.GetObject("DirectionalPad_C", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DirectionalPad_CD {
+            get {
+                object obj = ResourceManager.GetObject("DirectionalPad_CD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DirectionalPad_CE {
+            get {
+                object obj = ResourceManager.GetObject("DirectionalPad_CE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
