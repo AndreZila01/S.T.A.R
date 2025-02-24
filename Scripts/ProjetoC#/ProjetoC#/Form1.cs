@@ -103,10 +103,15 @@ namespace ProjetoC_
 			Keybinds += tecla.ToString() + "\n";
 			Console.WriteLine(Keybinds);
 			Console.WriteLine("" + teclasPressionadas.Count() + " " + tecla);
-			if (teclasPressionadas.Count > 1)
+			if (teclasPressionadas.Count > 1 || tecla.Count()==2)
 			{
-				Console.WriteLine($"{teclasPressionadas.ToArray()[0]}{teclasPressionadas.ToArray()[1]}");
-				switch ($"{teclasPressionadas.ToArray()[0]}{teclasPressionadas.ToArray()[1]}")
+				//Console.WriteLine($"{teclasPressionadas.ToArray()[0]}{teclasPressionadas.ToArray()[1]}");
+				string teclas = "";
+				if(tecla.Count() == 2)
+                    teclas = tecla;
+                else
+                    teclas = $"{teclasPressionadas.ToArray()[0]}{teclasPressionadas.ToArray()[1]}";
+                switch (tecla)
 				{
 					case "WD":
 					case "DW":

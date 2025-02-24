@@ -38,10 +38,17 @@ namespace ProjetoC_.Cerebro
 					teclasPressionadas.Add(tecla);
 					Console.WriteLine($"Tecla Pressionada: {teclaStr}");
 
-					if ("" + Form.ActiveForm != "ProjetoC_.Form1, Text: Form1")
-						if (teclaStr == "A" || teclaStr == "S" || teclaStr == "D" || teclaStr == "W")
-							frm.ChangeDirectionalPad(teclaStr);
-				}
+                    if ("" + Form.ActiveForm != "ProjetoC_.Form1, Text: Form1")
+                        if (teclaStr == "A" || teclaStr == "S" || teclaStr == "D" || teclaStr == "W")
+                            if (teclasPressionadas.Count < 2)
+                            {
+                                frm.ChangeDirectionalPad(teclasPressionadas.ToArray()[0].ToString());
+                            }
+                            else
+                            {
+                                frm.ChangeDirectionalPad($"{teclasPressionadas.ToArray()[0].ToString()}{teclasPressionadas.ToArray()[1].ToString()}");
+                            }
+                }
 				else if (wParam == (IntPtr)0x101 || wParam == (IntPtr)0x105)
 				{
 					teclasPressionadas.Remove(tecla);
