@@ -2,7 +2,7 @@ Microphone Sensor
 Temperature sensor
 clock sensor
 sound sensor
-Flamer sensor
+Flame sensor
 lazer sensor (comprar + 1)
 Common Cathode Led
 Seven-color Automatic FLashing LED
