@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Andre\\Desktop\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\",
+  "WorkspaceRootPath": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|c:\\users\\andre\\desktop\\github\\s.t.a.r\\scripts\\projetoc#\\projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|e:\\github\\s.t.a.r\\scripts\\projetoc#\\projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|solutionrelative:projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|C:\\Users\\Andre\\Desktop\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\projetoc#\\cerebro\\keybinds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|solutionrelative:projetoc#\\cerebro\\keybinds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|solutionrelative:projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|C:\\Users\\Andre\\Desktop\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|solutionrelative:projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\projetoc#\\cerebro\\keybinds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|solutionrelative:projetoc#\\cerebro\\keybinds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,22 +28,22 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Andre\\Desktop\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs",
+              "DocumentMoniker": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs",
               "RelativeDocumentMoniker": "ProjetoC#\\Form1.cs",
-              "ToolTip": "C:\\Users\\Andre\\Desktop\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs",
+              "ToolTip": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs",
               "RelativeToolTip": "ProjetoC#\\Form1.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAMwHEAAAAdAAAAAAAAAA==",
+              "ViewState": "AQIAADEAAAAAAAAAAAAcwEwAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-22T23:51:09.731Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Andre\\Desktop\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs",
+              "DocumentMoniker": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs",
               "RelativeDocumentMoniker": "ProjetoC#\\Form1.cs",
-              "ToolTip": "C:\\Users\\Andre\\Desktop\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs [Design]",
+              "ToolTip": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs [Design]",
               "RelativeToolTip": "ProjetoC#\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-22T23:51:08.056Z",
@@ -51,13 +51,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Keybinds.cs",
-              "DocumentMoniker": "C:\\Users\\Andre\\Desktop\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Cerebro\\Keybinds.cs",
+              "DocumentMoniker": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Cerebro\\Keybinds.cs",
               "RelativeDocumentMoniker": "ProjetoC#\\Cerebro\\Keybinds.cs",
-              "ToolTip": "C:\\Users\\Andre\\Desktop\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Cerebro\\Keybinds.cs",
+              "ToolTip": "E:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Cerebro\\Keybinds.cs",
               "RelativeToolTip": "ProjetoC#\\Cerebro\\Keybinds.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAEwDAAAAA4AAAAAAAAAA==",
+              "ViewState": "AQIAACQAAAAAAAAAAAAowAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-22T22:58:18.936Z",
               "EditorCaption": ""
