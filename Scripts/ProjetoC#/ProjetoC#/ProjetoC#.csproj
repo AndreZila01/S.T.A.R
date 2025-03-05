@@ -47,6 +47,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cerebro\Class.cs" />
     <Compile Include="Cerebro\Keybinds.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

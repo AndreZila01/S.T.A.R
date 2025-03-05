@@ -12,9 +12,10 @@ namespace ProjetoC_.Cerebro
 	internal class Keybinds
 	{
 		private static Form1 frm;
+
+		#region Dont Touch KeybindsBackground!
 		private static LowLevelKeyboardProc _proc = HookCallback;
 		private static IntPtr _hookID = IntPtr.Zero;
-		private static HashSet<Keys> teclasPressionadas = new HashSet<Keys>(); // Armazena teclas ativas
 
 		private static IntPtr SetHook(LowLevelKeyboardProc proc)
 		{
@@ -29,35 +30,35 @@ namespace ProjetoC_.Cerebro
 
 		private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
 		{
-            if (nCode >= 0)
+			if (nCode >= 0)
 			{
 				Keys tecla = (Keys)Marshal.ReadInt32(lParam);
 				string teclaStr = tecla.ToString();
 				if (wParam == (IntPtr)0x100 || wParam == (IntPtr)0x104)
 				{
-					teclasPressionadas.Add(tecla);
+					Form1.teclasPressionadas.Add(tecla);
 					Console.WriteLine($"Tecla Pressionada: {teclaStr}");
 
-                    if ("" + Form.ActiveForm != "ProjetoC_.Form1, Text: Form1")
-                        if (teclaStr == "A" || teclaStr == "S" || teclaStr == "D" || teclaStr == "W")
-                            if (teclasPressionadas.Count < 2)
-                            {
-                                frm.ChangeDirectionalPad(teclasPressionadas.ToArray()[0].ToString());
-                            }
-                            else
-                            {
-                                frm.ChangeDirectionalPad($"{teclasPressionadas.ToArray()[0].ToString()}{teclasPressionadas.ToArray()[1].ToString()}");
-                            }
-                }
+					if ("" + Form.ActiveForm != "ProjetoC_.Form1, Text: Form1")
+						if (teclaStr == "A" || teclaStr == "S" || teclaStr == "D" || teclaStr == "W")
+							if (Form1.teclasPressionadas.Count < 2)
+							{
+								frm.ChangeDirectionalPad();
+							}
+							else
+							{
+								frm.ChangeDirectionalPad();
+							}
+				}
 				else if (wParam == (IntPtr)0x101 || wParam == (IntPtr)0x105)
 				{
-					teclasPressionadas.Remove(tecla);
+					Form1.teclasPressionadas.Remove(tecla);
 					Console.WriteLine($"Tecla Solta: {teclaStr}");
 
-					if (teclasPressionadas.Count == 0)
+					if (Form1.teclasPressionadas.Count == 0)
 					{
 						Console.WriteLine("Nenhuma tecla pressionada!");
-						frm.ChangeDirectionalPad("");
+						frm.ChangeDirectionalPad();
 					}
 				}
 			}
@@ -71,7 +72,7 @@ namespace ProjetoC_.Cerebro
 			while (true)
 			{
 				Application.DoEvents(); // Processa eventos do sistema
-				System.Threading.Thread.Sleep(10); // Pequena pausa para evitar uso excessivo de CPU
+				System.Threading.Thread.Sleep(250); // Pequena pausa para evitar uso excessivo de CPU
 			}
 		}
 
@@ -83,5 +84,6 @@ namespace ProjetoC_.Cerebro
 
 		[DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
 		private static extern IntPtr GetModuleHandle(string lpModuleName);
+		#endregion
 	}
 }
