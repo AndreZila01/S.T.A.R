@@ -5,11 +5,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -79,14 +81,16 @@ namespace ProjetoC_
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 			this.ActiveControl = null;
-			//if (Keybinds != txtInput.Text)
-			//{
-			//	txtInput.Text = Keybinds.Replace("\n", Environment.NewLine);
-			//	txtInput.SelectionStart = txtInput.Text.Length;
-			//	txtInput.ScrollToCaret();
-			//}
-			//if (pctDirectionalPad.Image != Properties.Resources.directionalpad && teclasPressionadas.Count() == 0 && ("" + Form.ActiveForm) == "ProjetoC_.Form1, Text: Form1")
-			//	pctDirectionalPad.Image = Properties.Resources.directionalpad;
+			if (Keybinds != txtInput.Text)
+			{
+				txtInput.Text = Keybinds.Replace("\n", Environment.NewLine);
+				txtInput.SelectionStart = txtInput.Text.Length;
+				txtInput.ScrollToCaret();
+			}
+			if (pctDirectionalPad.Image != Properties.Resources.directionalpad && teclasPressionadas.Count() == 0 && ("" + Form.ActiveForm) == "ProjetoC_.Form1, Text: Form1") { 
+				pctDirectionalPad.Image = Properties.Resources.directionalpad;
+				lstLastKeyBinds.Add(new Keybind{ Quantidade = 1, Tecla = "WAIT" });
+			}
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -100,7 +104,13 @@ namespace ProjetoC_
 					System.Windows.Forms.Clipboard.SetText(Keybinds);
 					break;
 				case "btnInput":
-					if (!backgroundWorker1.IsBusy) backgroundWorker1.RunWorkerAsync();
+					//if (!backgroundWorker1.IsBusy) backgroundWorker1.RunWorkerAsync();
+					//new Keybinds().Background_Keybinds(this);
+					Thread t2 = new Thread(delegate ()
+					{
+						new Keybinds().Background_Keybinds(this);
+					});
+					t2.Start();
 					break;
 			}
 		}
@@ -129,7 +139,7 @@ namespace ProjetoC_
 					lstLastKeyBinds.Add(new Keybind { Tecla = teclas, Quantidade = 1 });
 
 				int quantidade = lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade;
-				Console.WriteLine(""+quantidade);
+				//Console.WriteLine("" + quantidade);
 				if (quantidade != 1)
 				{
 					var temp = Keybinds.Split(new string[] { "\n" }, StringSplitOptions.None);
@@ -137,33 +147,33 @@ namespace ProjetoC_
 					if (quantidade % 10 == 0)
 						quantidade--;
 
-					int lenghremove = ($"\n ({quantidade})" ).Length+1;
+					int lenghremove = ($"\n ({quantidade})").Length + 1;
 
 					if (teclas.Length == 2 && quantidade > 1)
 						lenghremove++;
 
 					if (quantidade == 2)
 						lenghremove = (teclas + "\n").Length;
-					Keybinds = Keybinds.Remove(Keybinds.Length-(lenghremove), lenghremove) + $"{teclas} ({lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade})\n";
+					Keybinds = Keybinds.Remove(Keybinds.Length - (lenghremove), lenghremove) + $"{teclas} ({lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade})\n";
 				}
 				else
 					Keybinds += teclas.ToString() + "\n";
 
-				if (txtInput.InvokeRequired)
-				{
-					//txtInput.Text = Keybinds.Replace("\n", Environment.NewLine);
-					//txtInput.SelectionStart = txtInput.Text.Length;
-					//txtInput.ScrollToCaret();
-					txtInput.Invoke(new MethodInvoker(delegate { Text = Keybinds.Replace("\n", Environment.NewLine); }));
-				}
-				else
-				{
-					txtInput.Text = Keybinds.Replace("\n", Environment.NewLine);
-					txtInput.SelectionStart = txtInput.Text.Length;
-					txtInput.ScrollToCaret();
-				}
+				//if (txtInput.InvokeRequired)
+				//{
+				//	//txtInput.Text = Keybinds.Replace("\n", Environment.NewLine);
+				//	//txtInput.SelectionStart = txtInput.Text.Length;
+				//	//txtInput.ScrollToCaret();
+				//	txtInput.Invoke(new MethodInvoker(delegate { Text = Keybinds.Replace("\n", Environment.NewLine); }));
+				//}
+				//else
+				//{
+				//	txtInput.Text = Keybinds.Replace("\n", Environment.NewLine);
+				//	txtInput.SelectionStart = txtInput.Text.Length;
+				//	txtInput.ScrollToCaret();
+				//}
 
-				//Console.WriteLine(Keybinds);
+				Console.WriteLine(teclas);
 				switch (teclas)
 				{
 					case "WD":

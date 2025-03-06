@@ -37,11 +37,11 @@ namespace ProjetoC_.Cerebro
 				if (wParam == (IntPtr)0x100 || wParam == (IntPtr)0x104)
 				{
 					Form1.teclasPressionadas.Add(tecla);
-					Console.WriteLine($"Tecla Pressionada: {teclaStr}");
+					//Console.WriteLine($"Tecla Pressionada: {teclaStr}");
 
 					if ("" + Form.ActiveForm != "ProjetoC_.Form1, Text: Form1")
 						if (teclaStr == "A" || teclaStr == "S" || teclaStr == "D" || teclaStr == "W")
-							if (Form1.teclasPressionadas.Count < 2)
+							if (Form1.teclasPressionadas.Count <= 2)
 							{
 								frm.ChangeDirectionalPad();
 							}
@@ -60,6 +60,8 @@ namespace ProjetoC_.Cerebro
 						Console.WriteLine("Nenhuma tecla pressionada!");
 						frm.ChangeDirectionalPad();
 					}
+					else
+						frm.ChangeDirectionalPad();
 				}
 			}
 			return CallNextHookEx(_hookID, nCode, wParam, lParam);
@@ -72,7 +74,7 @@ namespace ProjetoC_.Cerebro
 			while (true)
 			{
 				Application.DoEvents(); // Processa eventos do sistema
-				System.Threading.Thread.Sleep(250); // Pequena pausa para evitar uso excessivo de CPU
+				System.Threading.Thread.Sleep(10); // Pequena pausa para evitar uso excessivo de CPU
 			}
 		}
 
