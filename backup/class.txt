@@ -1,0 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProjetoC_.Cerebro
+{
+	internal class Class
+	{
+		public class Keybind
+		{
+			public string Tecla { get; set; }
+			public int Quantidade { get; set; }
+		}
+	}
+}
