@@ -24,7 +24,8 @@ namespace ProjetoC_.Cerebro
 			{
 				return SetWindowsHookEx(13, proc, GetModuleHandle(curModule.ModuleName), 0);
 			}
-		}
+
+        }
 
 		private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
@@ -74,7 +75,7 @@ namespace ProjetoC_.Cerebro
 			while (true)
 			{
 				Application.DoEvents(); // Processa eventos do sistema
-				System.Threading.Thread.Sleep(10); // Pequena pausa para evitar uso excessivo de CPU
+				Task.Delay(31); // Pequena pausa para evitar uso excessivo de CPU
 			}
 		}
 

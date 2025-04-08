@@ -18,3 +18,6 @@ E:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC#.csproj.Generat
 E:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC#.csproj.CoreCompileInputs.cache
 E:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC#.exe
 E:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC#.pdb
+C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\M2Mqtt.Net.dll
+C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\M2Mqtt.Net.pdb
+C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC#.csproj.Up2Date
