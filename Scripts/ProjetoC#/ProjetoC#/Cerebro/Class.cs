@@ -8,10 +8,19 @@ namespace ProjetoC_.Cerebro
 {
 	internal class Class
 	{
-		public class Keybind
+		internal class Keybind
 		{
 			public string Tecla { get; set; }
 			public int Quantidade { get; set; }
 		}
-	}
+		internal class DataArduino
+		{
+			public DateTime data {  get; set; }
+			public float UltraSonic_sensor {  get; set; }
+			public int Flame_sensor {  get; set; }
+			public float Temperatura {  get; set; }
+			public float Humidade {  get; set; }
+			public int Sound_sensor {  get; set; }
+        }
+    }
 }
