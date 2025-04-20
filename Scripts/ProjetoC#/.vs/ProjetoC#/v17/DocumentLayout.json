@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "D:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|D:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|d:\\github\\s.t.a.r\\scripts\\projetoc#\\projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|solutionrelative:projetoc#\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,7 +15,7 @@
       "RelativeMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|solutionrelative:projetoc#\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|d:\\github\\s.t.a.r\\scripts\\projetoc#\\projetoc#\\cerebro\\class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|D:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\projetoc#\\cerebro\\class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0A824274-758A-4AB8-9E68-D91085DB5C89}|ProjetoC#\\ProjetoC#.csproj|solutionrelative:projetoc#\\cerebro\\class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -71,8 +71,7 @@
               "RelativeToolTip": "ProjetoC#\\Cerebro\\Class.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T19:07:16.339Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-16T19:07:16.339Z"
             },
             {
               "$type": "Document",
@@ -96,8 +95,7 @@
               "RelativeToolTip": "ProjetoC#\\Form1.Designer.cs",
               "ViewState": "AgIAAHQAAAAAAAAAAAAswIwAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T10:18:14.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T10:18:14.707Z"
             },
             {
               "$type": "Document",
@@ -144,7 +142,8 @@
               "RelativeToolTip": "ProjetoC#\\Cerebro\\Comunicacao.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAswCcAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T08:23:56.469Z"
+              "WhenOpened": "2025-04-08T08:23:56.469Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -155,8 +154,7 @@
               "ToolTip": "D:\\GitHub\\S.T.A.R\\Scripts\\ProjetoC#\\ProjetoC#\\Form1.cs [Design]",
               "RelativeToolTip": "ProjetoC#\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T23:51:08.056Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-02-22T23:51:08.056Z"
             }
           ]
         }

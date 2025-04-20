@@ -1,6 +1,19 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
+#include "UltrasonicSensor.h"
+#include "FlameSensor.h"
+#include "DHTSensor.h"
+#include "AnalogSensor.h"
+#include "Buzzer.h"
 
+
+
+//mudar os pinos
+Buzzer buzzer(9); // Buzzer no pino 9
+AnalogSensor soundSensor(9); // Sensor ligado ao pino analógico A9
+DHTSensor dhtSensor(5); // DHT11 ligado ao pino 5
+FlameSensor flame(11, 10);  // sensorPin = 11, ledPin = 10 
+UltrasonicSensor ultrasonicsensor(11, 10);
 // Update these with values suitable for your network.
 
 const char* ssid = "Samsung_Fixe";
@@ -88,6 +101,11 @@ void setup() {
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
+  ultrasonicsensor.begin();
+  flame.begin();
+  dhtSensor.begin();
+  soundSensor.begin();
+  buzzer.begin();
 }
 
 void loop() {
