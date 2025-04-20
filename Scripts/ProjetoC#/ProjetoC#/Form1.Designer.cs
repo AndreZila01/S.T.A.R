@@ -42,10 +42,17 @@
             this.btnOffArd = new System.Windows.Forms.Button();
             this.btnClearData = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnForm = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.txtData = new System.Windows.Forms.TextBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lblSound = new System.Windows.Forms.Label();
+            this.lblHumidade = new System.Windows.Forms.Label();
+            this.lblTemp = new System.Windows.Forms.Label();
+            this.lblFlame = new System.Windows.Forms.Label();
+            this.lblUSonic = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.txtData = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnInput = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
@@ -53,7 +60,7 @@
             this.txtInput = new System.Windows.Forms.TextBox();
             this.pctDirectionalPad = new System.Windows.Forms.PictureBox();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.bgwStart = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cmsData = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.protobufdatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +74,7 @@
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctDirectionalPad)).BeginInit();
             this.cmsData.SuspendLayout();
@@ -131,7 +139,6 @@
             this.pctIPV4.TabIndex = 1;
             this.pctIPV4.TabStop = false;
             this.pctIPV4.Tag = "0";
-            this.pctIPV4.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox1
             // 
@@ -163,7 +170,7 @@
             this.panel5.Controls.Add(this.btnOffArd);
             this.panel5.Controls.Add(this.btnClearData);
             this.panel5.Controls.Add(this.label4);
-            this.panel5.Controls.Add(this.button4);
+            this.panel5.Controls.Add(this.btnForm);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(280, 0);
             this.panel5.MaximumSize = new System.Drawing.Size(220, 392);
@@ -182,7 +189,7 @@
             this.btnExport.TabIndex = 5;
             this.btnExport.Text = "Export Data do Arduino";
             this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.button1_Click);
+            this.btnExport.Click += new System.EventHandler(this.button_Click);
             this.btnExport.MouseHover += new System.EventHandler(this.btnExport_MouseHover);
             // 
             // btnOnArd
@@ -193,9 +200,9 @@
             this.btnOnArd.Name = "btnOnArd";
             this.btnOnArd.Size = new System.Drawing.Size(208, 23);
             this.btnOnArd.TabIndex = 4;
-            this.btnOnArd.Text = "Ligar ao Arduino ";
+            this.btnOnArd.Text = "Connect with Arduino ";
             this.btnOnArd.UseVisualStyleBackColor = true;
-            this.btnOnArd.Click += new System.EventHandler(this.button1_Click);
+            this.btnOnArd.Click += new System.EventHandler(this.button_Click);
             // 
             // btnOffArd
             // 
@@ -206,9 +213,9 @@
             this.btnOffArd.Name = "btnOffArd";
             this.btnOffArd.Size = new System.Drawing.Size(208, 23);
             this.btnOffArd.TabIndex = 3;
-            this.btnOffArd.Text = "Desligar ao Arduino";
+            this.btnOffArd.Text = "Turn off Arduino";
             this.btnOffArd.UseVisualStyleBackColor = true;
-            this.btnOffArd.Click += new System.EventHandler(this.button1_Click);
+            this.btnOffArd.Click += new System.EventHandler(this.button_Click);
             // 
             // btnClearData
             // 
@@ -220,7 +227,7 @@
             this.btnClearData.TabIndex = 2;
             this.btnClearData.Text = "Clear Data do Arduino";
             this.btnClearData.UseVisualStyleBackColor = true;
-            this.btnClearData.Click += new System.EventHandler(this.button1_Click);
+            this.btnClearData.Click += new System.EventHandler(this.button_Click);
             // 
             // label4
             // 
@@ -232,51 +239,128 @@
             this.label4.Text = "Ping com Arduino : 0 ms";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button4
+            // btnForm
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(6, 85);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(208, 23);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Novo Form só com Dados";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnForm.Location = new System.Drawing.Point(6, 85);
+            this.btnForm.Name = "btnForm";
+            this.btnForm.Size = new System.Drawing.Size(208, 23);
+            this.btnForm.TabIndex = 0;
+            this.btnForm.Text = "New Form with data";
+            this.btnForm.UseVisualStyleBackColor = true;
+            this.btnForm.Click += new System.EventHandler(this.button_Click);
             // 
             // panel4
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.panel6);
+            this.panel4.Controls.Add(this.btnImport);
             this.panel4.Controls.Add(this.txtData);
-            this.panel4.Controls.Add(this.label3);
             this.panel4.Location = new System.Drawing.Point(500, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(300, 392);
             this.panel4.TabIndex = 1;
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackColor = System.Drawing.SystemColors.Control;
+            this.panel6.Controls.Add(this.lblSound);
+            this.panel6.Controls.Add(this.lblHumidade);
+            this.panel6.Controls.Add(this.lblTemp);
+            this.panel6.Controls.Add(this.lblFlame);
+            this.panel6.Controls.Add(this.lblUSonic);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Location = new System.Drawing.Point(6, 6);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(291, 179);
+            this.panel6.TabIndex = 3;
+            // 
+            // lblSound
+            // 
+            this.lblSound.AutoSize = true;
+            this.lblSound.Location = new System.Drawing.Point(9, 146);
+            this.lblSound.Name = "lblSound";
+            this.lblSound.Size = new System.Drawing.Size(35, 13);
+            this.lblSound.TabIndex = 5;
+            this.lblSound.Text = "label9";
+            // 
+            // lblHumidade
+            // 
+            this.lblHumidade.AutoSize = true;
+            this.lblHumidade.Location = new System.Drawing.Point(9, 122);
+            this.lblHumidade.Name = "lblHumidade";
+            this.lblHumidade.Size = new System.Drawing.Size(35, 13);
+            this.lblHumidade.TabIndex = 4;
+            this.lblHumidade.Text = "label8";
+            // 
+            // lblTemp
+            // 
+            this.lblTemp.AutoSize = true;
+            this.lblTemp.Location = new System.Drawing.Point(9, 98);
+            this.lblTemp.Name = "lblTemp";
+            this.lblTemp.Size = new System.Drawing.Size(35, 13);
+            this.lblTemp.TabIndex = 3;
+            this.lblTemp.Text = "label7";
+            // 
+            // lblFlame
+            // 
+            this.lblFlame.AutoSize = true;
+            this.lblFlame.Location = new System.Drawing.Point(9, 74);
+            this.lblFlame.Name = "lblFlame";
+            this.lblFlame.Size = new System.Drawing.Size(35, 13);
+            this.lblFlame.TabIndex = 2;
+            this.lblFlame.Text = "label6";
+            // 
+            // lblUSonic
+            // 
+            this.lblUSonic.AutoSize = true;
+            this.lblUSonic.Location = new System.Drawing.Point(9, 50);
+            this.lblUSonic.Name = "lblUSonic";
+            this.lblUSonic.Size = new System.Drawing.Size(35, 13);
+            this.lblUSonic.TabIndex = 1;
+            this.lblUSonic.Text = "label5";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(106, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Data do Arduino";
+            // 
+            // btnImport
+            // 
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImport.Location = new System.Drawing.Point(18, 366);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(270, 23);
+            this.btnImport.TabIndex = 2;
+            this.btnImport.Text = "Import Data";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.button_Click);
             // 
             // txtData
             // 
             this.txtData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtData.Location = new System.Drawing.Point(6, 215);
+            this.txtData.Location = new System.Drawing.Point(6, 191);
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
             this.txtData.ReadOnly = true;
             this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtData.Size = new System.Drawing.Size(282, 164);
+            this.txtData.Size = new System.Drawing.Size(291, 174);
             this.txtData.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(115, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Data do Arduino";
             // 
             // panel3
             // 
@@ -303,7 +387,7 @@
             this.btnInput.Tag = "";
             this.btnInput.Text = "Input ON";
             this.btnInput.UseVisualStyleBackColor = true;
-            this.btnInput.Click += new System.EventHandler(this.button1_Click);
+            this.btnInput.Click += new System.EventHandler(this.button_Click);
             // 
             // btnCopy
             // 
@@ -315,7 +399,7 @@
             this.btnCopy.TabIndex = 3;
             this.btnCopy.Text = "Copy";
             this.btnCopy.UseVisualStyleBackColor = true;
-            this.btnCopy.Click += new System.EventHandler(this.button1_Click);
+            this.btnCopy.Click += new System.EventHandler(this.button_Click);
             // 
             // btnClear
             // 
@@ -327,7 +411,7 @@
             this.btnClear.TabIndex = 2;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.button1_Click);
+            this.btnClear.Click += new System.EventHandler(this.button_Click);
             // 
             // txtInput
             // 
@@ -355,10 +439,10 @@
             this.pctDirectionalPad.TabIndex = 0;
             this.pctDirectionalPad.TabStop = false;
             // 
-            // backgroundWorker1
+            // bgwStart
             // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            this.bgwStart.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.bgwStart.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // timer1
             // 
@@ -378,7 +462,7 @@
             // protobufdatToolStripMenuItem
             // 
             this.protobufdatToolStripMenuItem.Name = "protobufdatToolStripMenuItem";
-            this.protobufdatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.protobufdatToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.protobufdatToolStripMenuItem.Tag = "0";
             this.protobufdatToolStripMenuItem.Text = "Protobuf (*.dat)";
             this.protobufdatToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
@@ -386,7 +470,7 @@
             // jsonjsonToolStripMenuItem
             // 
             this.jsonjsonToolStripMenuItem.Name = "jsonjsonToolStripMenuItem";
-            this.jsonjsonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jsonjsonToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.jsonjsonToolStripMenuItem.Tag = "1";
             this.jsonjsonToolStripMenuItem.Text = "Json (*.json)";
             this.jsonjsonToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
@@ -394,7 +478,7 @@
             // excelxlsxToolStripMenuItem
             // 
             this.excelxlsxToolStripMenuItem.Name = "excelxlsxToolStripMenuItem";
-            this.excelxlsxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.excelxlsxToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.excelxlsxToolStripMenuItem.Tag = "2";
             this.excelxlsxToolStripMenuItem.Text = "Excel (*.xlsx)";
             this.excelxlsxToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
@@ -402,7 +486,7 @@
             // textFiletxtToolStripMenuItem
             // 
             this.textFiletxtToolStripMenuItem.Name = "textFiletxtToolStripMenuItem";
-            this.textFiletxtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.textFiletxtToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.textFiletxtToolStripMenuItem.Tag = "3";
             this.textFiletxtToolStripMenuItem.Text = "Text File (*.txt)";
             this.textFiletxtToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
@@ -430,6 +514,8 @@
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctDirectionalPad)).EndInit();
@@ -457,9 +543,9 @@
 		private System.Windows.Forms.Button btnCopy;
 		public System.Windows.Forms.Button btnInput;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button btnForm;
 		private System.Windows.Forms.Label label4;
-		private System.ComponentModel.BackgroundWorker backgroundWorker1;
+		private System.ComponentModel.BackgroundWorker bgwStart;
 		private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnOffArd;
         private System.Windows.Forms.Button btnClearData;
@@ -471,6 +557,13 @@
         private System.Windows.Forms.ToolStripMenuItem jsonjsonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelxlsxToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem textFiletxtToolStripMenuItem;
+        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label lblUSonic;
+        private System.Windows.Forms.Label lblHumidade;
+        private System.Windows.Forms.Label lblTemp;
+        private System.Windows.Forms.Label lblFlame;
+        private System.Windows.Forms.Label lblSound;
     }
 }
 

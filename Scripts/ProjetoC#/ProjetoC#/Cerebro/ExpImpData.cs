@@ -13,7 +13,7 @@ using static ProjetoC_.Cerebro.Class;
 
 namespace ProjetoC_.Cerebro
 {
-    internal class ExportData
+    internal class ExpImpData
     {
         string tempPath = Path.GetTempPath();
         public void ExcelData(string data)
@@ -24,12 +24,12 @@ namespace ProjetoC_.Cerebro
             Microsoft.Office.Interop.Excel.Workbook xlWorkBook = xlApp.Workbooks.Add(misValue);
             Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
-            xlWorkSheet.Cells[1, 1] = "Data";
-            xlWorkSheet.Cells[1, 2] = "Value of Ultra Sonic Sensor";
-            xlWorkSheet.Cells[1, 3] = "Value of Flame Sensor";
-            xlWorkSheet.Cells[1, 4] = "Temperature (ºC)";
-            xlWorkSheet.Cells[1, 5] = "% of Humidity";
-            xlWorkSheet.Cells[1, 6] = "Value of Sound Sensor";
+            xlWorkSheet.Cells[1, 1] = Properties.Resources.StringData;
+            xlWorkSheet.Cells[1, 2] = Properties.Resources.StringUltraSonicSensor;
+            xlWorkSheet.Cells[1, 3] = Properties.Resources.StringFlameSensor;
+            xlWorkSheet.Cells[1, 4] = Properties.Resources.StringTemperature;
+            xlWorkSheet.Cells[1, 5] = Properties.Resources.StringHumidity;
+            xlWorkSheet.Cells[1, 6] = Properties.Resources.StringSound;
 
             List<DataArduino> lst = JsonConvert.DeserializeObject<List<DataArduino>>(data);// = //new List<DataArduino>();
 
@@ -63,24 +63,30 @@ namespace ProjetoC_.Cerebro
             List<DataArduino> lst = JsonConvert.DeserializeObject<List<DataArduino>>(data);
             string info = "";
             foreach (DataArduino dataArd in lst)
-                info += $"Data: {dataArd.data};Value of Ultra Sonic Sensor: {dataArd.UltraSonic_sensor};Value of Flame Sensor: {dataArd.Flame_sensor};Temperature (ºC): {dataArd.Temperatura};% of Humidity: {dataArd.Humidade};Value of Sound Sensor: {dataArd.Sound_sensor}\n";
+                info += $"{Properties.Resources.StringData}{dataArd.data}; {Properties.Resources.StringUltraSonicSensor}{dataArd.UltraSonic_sensor}; {Properties.Resources.StringFlameSensor}{dataArd.Flame_sensor};{Properties.Resources.StringTemperature}{dataArd.Temperatura};{Properties.Resources.StringHumidity}{dataArd.Humidade};{Properties.Resources.StringSound}{dataArd.Sound_sensor}\n";
             File.WriteAllText(tempPath + "\\outputData.txt", info);
         }
 
         public void ProtobufData(string data)
         {
-            //DataTable dt = new DataTable();
-            //dt.Columns.Add("Id", typeof(int));
-            //dt.Columns.Add("Name", typeof(string));
+            DataTable dt = new DataTable();
+            dt.Columns.Add(Properties.Resources.StringData, typeof(DateTime));
+            dt.Columns.Add(Properties.Resources.StringUltraSonicSensor, typeof(float));
+            dt.Columns.Add(Properties.Resources.StringFlameSensor, typeof(int));
+            dt.Columns.Add(Properties.Resources.StringTemperature, typeof(float));
+            dt.Columns.Add(Properties.Resources.StringHumidity, typeof(float));
+            dt.Columns.Add(Properties.Resources.StringSound, typeof(int));
 
-            //dt.Rows.Add(1, "Alice");
-            //dt.Rows.Add(2, "Bob");
+            List<DataArduino> lst = JsonConvert.DeserializeObject<List<DataArduino>>(data);
+            foreach (DataArduino dataArd in lst)
+                dt.Rows.Add(dataArd.data, dataArd.UltraSonic_sensor, dataArd.Flame_sensor, dataArd.Temperatura, dataArd.Humidade, dataArd.Sound_sensor);
+            
 
-            //using (Stream stream = File.OpenWrite("C:\\Users\\teste\\Desktop\\foo.dat"))
-            //using (IDataReader reader = dt.CreateDataReader())
-            //{
-            //    DataSerializer.Serialize(stream, reader);
-            //}
+            using (Stream stream = File.OpenWrite(tempPath + "\\outputData.dat"))
+            using (IDataReader reader = dt.CreateDataReader())
+            {
+                DataSerializer.Serialize(stream, reader);
+            }
 
             //Thread.Sleep(1000);
 

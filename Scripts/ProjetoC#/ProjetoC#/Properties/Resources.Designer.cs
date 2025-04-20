@@ -179,5 +179,59 @@ namespace ProjetoC_.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data: .
+        /// </summary>
+        internal static string StringData {
+            get {
+                return ResourceManager.GetString("StringData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value of Flame Sensor: .
+        /// </summary>
+        internal static string StringFlameSensor {
+            get {
+                return ResourceManager.GetString("StringFlameSensor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of Humidity: .
+        /// </summary>
+        internal static string StringHumidity {
+            get {
+                return ResourceManager.GetString("StringHumidity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value of Sound Sensor: .
+        /// </summary>
+        internal static string StringSound {
+            get {
+                return ResourceManager.GetString("StringSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Temperature (ºC): .
+        /// </summary>
+        internal static string StringTemperature {
+            get {
+                return ResourceManager.GetString("StringTemperature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value of Ultra Sonic Sensor: .
+        /// </summary>
+        internal static string StringUltraSonicSensor {
+            get {
+                return ResourceManager.GetString("StringUltraSonicSensor", resourceCulture);
+            }
+        }
     }
 }

@@ -39,20 +39,21 @@ namespace ProjetoC_.Cerebro
                 string teclaStr = tecla.ToString();
                 if (wParam == (IntPtr)0x100 || wParam == (IntPtr)0x104)
                 {
-                    teclasPressionadas.Add(tecla);
                     //Console.WriteLine($"Tecla Pressionada: {teclaStr}");
 
                     //if ("" + Form.ActiveForm != "ProjetoC_.Form1, Text: Form1")
                     Console.WriteLine("" + teclaStr);
                     if (teclaStr == "A" || teclaStr == "S" || teclaStr == "D" || teclaStr == "W")
                     {
+                        teclasPressionadas.Add(tecla);
                         frm.txtInput.Tag = "";
                         ChangeDirectionalPad();
                     }
                 }
                 else if (wParam == (IntPtr)0x101 || wParam == (IntPtr)0x105)
                 {
-                    teclasPressionadas.Remove(tecla);
+                    if (teclaStr == "A" || teclaStr == "S" || teclaStr == "D" || teclaStr == "W")
+                        teclasPressionadas.Remove(tecla);
                     Console.WriteLine($"Tecla Solta: {teclaStr}");
 
                     if (teclasPressionadas.Count == 0)

@@ -85,7 +85,7 @@
   <ItemGroup>
     <Compile Include="Cerebro\Class.cs" />
     <Compile Include="Cerebro\Comunicacao.cs" />
-    <Compile Include="Cerebro\ExportData.cs" />
+    <Compile Include="Cerebro\ExpImpData.cs" />
     <Compile Include="Cerebro\Keybinds.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

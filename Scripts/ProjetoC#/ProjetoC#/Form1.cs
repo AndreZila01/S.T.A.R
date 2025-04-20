@@ -28,17 +28,20 @@ namespace ProjetoC_
         private Comunicacao _com_;
         //public HashSet<Keys> teclasPressionadas = new HashSet<Keys>();
 
-
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) { this.ActiveControl = null; }
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) { this.ActiveControl = null; lblFlame.Text = Properties.Resources.StringFlameSensor; lblHumidade.Text = Properties.Resources.StringHumidity; lblTemp.Text = Properties.Resources.StringTemperature; lblUSonic.Text = Properties.Resources.StringUltraSonicSensor; lblSound.Text = Properties.Resources.StringSound; timer1.Start();
+        }
         public Form1() { InitializeComponent(); }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             this.ActiveControl = null;
-            timer1.Start();
-            var asasa = (new Keybinds());
-            _com_ = new Comunicacao();
+            //var asasa = (new Keybinds());
 
+            if (!bgwStart.IsBusy)
+                bgwStart.RunWorkerAsync();
+        }
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) { 
+            _com_ = new Comunicacao();
             new Thread(() =>
             {
                 try
@@ -51,10 +54,7 @@ namespace ProjetoC_
 
                 }
             }).Start();
-        }
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            new Keybinds().Background_Keybinds(this);
+            //new Keybinds().Background_Keybinds(this); 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace ProjetoC_
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_Click(object sender, EventArgs e)
         {
             switch (((System.Windows.Forms.Button)sender).Name)
             {
@@ -109,14 +109,27 @@ namespace ProjetoC_
                     }
                     break;
                 case "btnExport":
-                    new ExportData().ExcelData(txtData.Text.ToString());
+                    new ExpImpData().ExcelData(txtData.Text.ToString());
                     break;
                 case "btnClearData":
+                    lblFlame.Text = Properties.Resources.StringFlameSensor; lblHumidade.Text = Properties.Resources.StringHumidity; lblTemp.Text = Properties.Resources.StringTemperature; lblUSonic.Text = Properties.Resources.StringUltraSonicSensor; lblSound.Text = Properties.Resources.StringSound; txtData.Text = "";
                     //Apagar a informação
                     break;
                 case "btnOffArd":
                     _com_.StopMQQT(this.Tag.ToString());
                     break;
+                case "btnImport":
+                    OpenFileDialog ofds = new OpenFileDialog();
+                    ofds.Filter = "Data exported (*.xlsx, *.json, *.txt, *.dat)|*.xlsx, *.json, *.txt, *.dat";
+                    ofds.Multiselect = false;
+                    if ((ofds.ShowDialog() == DialogResult.OK) && (ofds.SafeFileName.Contains(".xlsx") || ofds.SafeFileName.Contains(".json") || ofds.SafeFileName.Contains(".txt") || ofds.SafeFileName.Contains(".dat")))
+                    {
+                        //TODO import data
+                    }
+                    break;
+                case "btnForm":
+
+                    break;  
                 case "test":
                     var asasas = Path.GetTempPath(); //localtemp %temp%
                     var asa = Environment.CurrentDirectory; //localpath
@@ -124,10 +137,6 @@ namespace ProjetoC_
                     (new Comunicacao()).CollectDataMQQT("", "TESTO");
                     break;
             }
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
         }
 
         private void btnExport_MouseHover(object sender, EventArgs e)
@@ -147,19 +156,19 @@ namespace ProjetoC_
             switch (((System.Windows.Forms.ToolStripMenuItem)sender).Tag)
             {
                 case 0:
-                    new ExportData().ProtobufData(txtData.Text.ToString());
+                    new ExpImpData().ProtobufData(txtData.Text.ToString());
                     //Protobuf
                     break;
                 case 1:
-                    new ExportData().JSONData(txtData.Text.ToString());
+                    new ExpImpData().JSONData(txtData.Text.ToString());
                     //JSON
                     break;
                 case 2:
-                    new ExportData().ExcelData(txtData.Text.ToString());
+                    new ExpImpData().ExcelData(txtData.Text.ToString());
                     //Excel
                     break;
                 case 3:
-                    new ExportData().TXTData(txtData.Text.ToString());
+                    new ExpImpData().TXTData(txtData.Text.ToString());
                     //Txt
                     break;
                 default:
@@ -173,7 +182,10 @@ namespace ProjetoC_
         Fazer um menustrip para o NotifyIcon para:
         -> mudar caminho do ficheiro
         -> close program
+        -> Import Data
         -> ...
+
+
          */
     }
 }

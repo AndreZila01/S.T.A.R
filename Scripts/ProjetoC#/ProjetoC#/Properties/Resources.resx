@@ -154,4 +154,22 @@
   <data name="DirectionalPad_CE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DirectionalPad_CE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="StringData" xml:space="preserve">
+    <value>Data: </value>
+  </data>
+  <data name="StringFlameSensor" xml:space="preserve">
+    <value>Value of Flame Sensor: </value>
+  </data>
+  <data name="StringHumidity" xml:space="preserve">
+    <value>% of Humidity: </value>
+  </data>
+  <data name="StringSound" xml:space="preserve">
+    <value>Value of Sound Sensor: </value>
+  </data>
+  <data name="StringTemperature" xml:space="preserve">
+    <value>Temperature (ºC): </value>
+  </data>
+  <data name="StringUltraSonicSensor" xml:space="preserve">
+    <value>Value of Ultra Sonic Sensor: </value>
+  </data>
 </root>
