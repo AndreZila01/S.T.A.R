@@ -98,7 +98,7 @@ namespace ProjetoC_
                             //TODO: Perguntar ao Nathan as regras de Topic! Como por exemplo não ter no inicio /, etc...
                             _com_.StartMQQT(ipv4.ToString(), path, this);
                             this.Tag = path;
-                            //_com_.StartMQQT(path, "Connection");
+
                             while (pctIPV4.Tag.ToString() == "0")
                                 Thread.Sleep(200);
                             btnOnArd.Enabled = false;

@@ -56,8 +56,12 @@ namespace ProjetoC_.Cerebro
                     frm.pctIPV4.Image = Properties.Resources.On;
                     frm.pctIPV4.Tag = "1";
                     break;
+                case string a when a.Contains("Data"):
+                    
+                    break;
                 default:
                     break;
+
             }
         }
     }
