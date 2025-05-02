@@ -226,7 +226,7 @@ namespace ProjetoC_.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value of Ultra Sonic Sensor: .
+        ///   Looks up a localized string similar to Value of Ultra Sonic Sensor (Hz): .
         /// </summary>
         internal static string StringUltraSonicSensor {
             get {

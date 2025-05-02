@@ -170,6 +170,6 @@
     <value>Temperature (ºC): </value>
   </data>
   <data name="StringUltraSonicSensor" xml:space="preserve">
-    <value>Value of Ultra Sonic Sensor: </value>
+    <value>Value of Ultra Sonic Sensor (Hz): </value>
   </data>
 </root>
