@@ -63,6 +63,26 @@ namespace ProjetoC_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap broom {
+            get {
+                object obj = ResourceManager.GetObject("broom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chronometer {
+            get {
+                object obj = ResourceManager.GetObject("chronometer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap directionalpad {
             get {
                 object obj = ResourceManager.GetObject("directionalpad", resourceCulture);
@@ -153,6 +173,16 @@ namespace ProjetoC_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap humidity {
+            get {
+                object obj = ResourceManager.GetObject("humidity", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icon3 {
             get {
                 object obj = ResourceManager.GetObject("Icon3", resourceCulture);
@@ -176,6 +206,16 @@ namespace ProjetoC_.Properties {
         internal static System.Drawing.Bitmap On {
             get {
                 object obj = ResourceManager.GetObject("On", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap smoke_detector {
+            get {
+                object obj = ResourceManager.GetObject("smoke-detector", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -226,11 +266,41 @@ namespace ProjetoC_.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value of Ultra Sonic Sensor: .
+        ///   Looks up a localized string similar to Value of Ultra Sonic Sensor (Hz): .
         /// </summary>
         internal static string StringUltraSonicSensor {
             get {
                 return ResourceManager.GetString("StringUltraSonicSensor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap thermometer {
+            get {
+                object obj = ResourceManager.GetObject("thermometer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ultrasonic_sensor {
+            get {
+                object obj = ResourceManager.GetObject("ultrasonic-sensor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wave_sound {
+            get {
+                object obj = ResourceManager.GetObject("wave-sound", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

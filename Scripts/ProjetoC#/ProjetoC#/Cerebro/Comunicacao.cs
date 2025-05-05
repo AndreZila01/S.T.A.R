@@ -57,7 +57,7 @@ namespace ProjetoC_.Cerebro
                     frm.pctIPV4.Tag = "1";
                     break;
                 case string a when a.Contains("Data"):
-                    
+                    frm.txtData.Text = "";
                     break;
                 default:
                     break;

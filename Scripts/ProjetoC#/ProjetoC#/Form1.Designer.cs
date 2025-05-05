@@ -288,6 +288,7 @@
             this.lblSound.Name = "lblSound";
             this.lblSound.Size = new System.Drawing.Size(35, 13);
             this.lblSound.TabIndex = 5;
+            this.lblSound.Tag = "0";
             this.lblSound.Text = "label9";
             // 
             // lblHumidade
@@ -297,6 +298,7 @@
             this.lblHumidade.Name = "lblHumidade";
             this.lblHumidade.Size = new System.Drawing.Size(35, 13);
             this.lblHumidade.TabIndex = 4;
+            this.lblHumidade.Tag = "0";
             this.lblHumidade.Text = "label8";
             // 
             // lblTemp
@@ -306,6 +308,7 @@
             this.lblTemp.Name = "lblTemp";
             this.lblTemp.Size = new System.Drawing.Size(35, 13);
             this.lblTemp.TabIndex = 3;
+            this.lblTemp.Tag = "0";
             this.lblTemp.Text = "label7";
             // 
             // lblFlame
@@ -315,6 +318,7 @@
             this.lblFlame.Name = "lblFlame";
             this.lblFlame.Size = new System.Drawing.Size(35, 13);
             this.lblFlame.TabIndex = 2;
+            this.lblFlame.Tag = "0";
             this.lblFlame.Text = "label6";
             // 
             // lblUSonic
@@ -324,6 +328,7 @@
             this.lblUSonic.Name = "lblUSonic";
             this.lblUSonic.Size = new System.Drawing.Size(35, 13);
             this.lblUSonic.TabIndex = 1;
+            this.lblUSonic.Tag = "0";
             this.lblUSonic.Text = "label5";
             // 
             // label3
@@ -498,6 +503,8 @@
             this.ClientSize = new System.Drawing.Size(800, 461);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1500, 750);
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Form1";
@@ -551,7 +558,7 @@
         private System.Windows.Forms.Button btnClearData;
         private System.Windows.Forms.Button btnOnArd;
         private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.TextBox txtData;
+        public System.Windows.Forms.TextBox txtData;
         private System.Windows.Forms.ContextMenuStrip cmsData;
         private System.Windows.Forms.ToolStripMenuItem protobufdatToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jsonjsonToolStripMenuItem;

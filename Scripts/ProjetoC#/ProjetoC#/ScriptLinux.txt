@@ -1,0 +1,1 @@
+mkbundle -o ProjetoMac bin/Debug/ProjetoC.exe --deps --static --cross mono-5.16.0-osx-10.7-x64

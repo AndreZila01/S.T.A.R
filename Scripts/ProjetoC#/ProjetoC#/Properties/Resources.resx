@@ -118,58 +118,79 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="On" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\On.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DirectionalPad_C" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DirectionalPad_C.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DirectionalPad_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DirectionalPad_D.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DirectionalPad_B" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DirectionalPad_B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DirectionalPad_E" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DirectionalPad_E.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="directionalpad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\directionalpad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DirectionalPad_BD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DirectionalPad_BD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DirectionalPad_BE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DirectionalPad_BE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DirectionalPad_CD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DirectionalPad_CD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DirectionalPad_CE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DirectionalPad_CE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StringData" xml:space="preserve">
     <value>Data: </value>
   </data>
-  <data name="StringFlameSensor" xml:space="preserve">
-    <value>Value of Flame Sensor: </value>
+  <data name="DirectionalPad_D" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DirectionalPad_D.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StringHumidity" xml:space="preserve">
     <value>% of Humidity: </value>
   </data>
-  <data name="StringSound" xml:space="preserve">
-    <value>Value of Sound Sensor: </value>
+  <data name="On" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\On.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DirectionalPad_C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DirectionalPad_C.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DirectionalPad_E" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DirectionalPad_E.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DirectionalPad_B" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DirectionalPad_B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ultrasonic-sensor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ultrasonic-sensor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StringTemperature" xml:space="preserve">
     <value>Temperature (ºC): </value>
   </data>
+  <data name="thermometer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\thermometer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="directionalpad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\directionalpad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smoke-detector" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\smoke-detector.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DirectionalPad_CD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DirectionalPad_CD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DirectionalPad_BD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DirectionalPad_BD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="chronometer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\chronometer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DirectionalPad_CE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DirectionalPad_CE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="humidity" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\humidity.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StringSound" xml:space="preserve">
+    <value>Value of Sound Sensor: </value>
+  </data>
+  <data name="StringFlameSensor" xml:space="preserve">
+    <value>Value of Flame Sensor: </value>
+  </data>
+  <data name="broom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\broom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="StringUltraSonicSensor" xml:space="preserve">
-    <value>Value of Ultra Sonic Sensor: </value>
+    <value>Value of Ultra Sonic Sensor (Hz): </value>
+  </data>
+  <data name="Off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wave-sound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wave-sound.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

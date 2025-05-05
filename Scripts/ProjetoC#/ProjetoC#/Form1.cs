@@ -28,7 +28,9 @@ namespace ProjetoC_
         private Comunicacao _com_;
         //public HashSet<Keys> teclasPressionadas = new HashSet<Keys>();
 
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) { this.ActiveControl = null; lblFlame.Text = Properties.Resources.StringFlameSensor; lblHumidade.Text = Properties.Resources.StringHumidity; lblTemp.Text = Properties.Resources.StringTemperature; lblUSonic.Text = Properties.Resources.StringUltraSonicSensor; lblSound.Text = Properties.Resources.StringSound; timer1.Start();
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.ActiveControl = null; lblFlame.Text = Properties.Resources.StringFlameSensor; lblHumidade.Text = Properties.Resources.StringHumidity; lblTemp.Text = Properties.Resources.StringTemperature; lblUSonic.Text = Properties.Resources.StringUltraSonicSensor; lblSound.Text = Properties.Resources.StringSound; timer1.Start();
         }
         public Form1() { InitializeComponent(); }
 
@@ -40,7 +42,8 @@ namespace ProjetoC_
             if (!bgwStart.IsBusy)
                 bgwStart.RunWorkerAsync();
         }
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) { 
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
             _com_ = new Comunicacao();
             new Thread(() =>
             {
@@ -92,17 +95,28 @@ namespace ProjetoC_
                         if (ipv4 == "")
                             break;
 
+                        
                         if (IPAddress.TryParse(ipv4, out IPAddress address))
                         {
                             string path = (Interaction.InputBox(ipv4, "Ip Arduino")).Replace(" ", "");
                             //TODO: Perguntar ao Nathan as regras de Topic! Como por exemplo não ter no inicio /, etc...
-                            _com_.StartMQQT(ipv4.ToString(), path, this);
-                            this.Tag = path;
 
-                            while (pctIPV4.Tag.ToString() == "0")
-                                Thread.Sleep(200);
+                            //_com_.StartMQQT(ipv4.ToString(), path, this);
+                            //this.Tag = path;
+
+                            //while (pctIPV4.Tag.ToString() == "0")
+                            //    Thread.Sleep(200);
+
                             btnOnArd.Enabled = false;
                             btnOffArd.Enabled = true;
+
+                            new Thread(() =>
+                            {
+                                function_SegundaEntrega();
+
+                            }).Start();
+                            //new Thread(new ThreadStart(function_SegundaEntrega)).Start();
+                            break;
                         }
                         else
                             ipv4 = "O ip não é valido, escreva again!";
@@ -116,6 +130,8 @@ namespace ProjetoC_
                     //Apagar a informação
                     break;
                 case "btnOffArd":
+                    btnOnArd.Enabled = true;
+                    btnOffArd.Enabled = false;
                     _com_.StopMQQT(this.Tag.ToString());
                     break;
                 case "btnImport":
@@ -128,14 +144,83 @@ namespace ProjetoC_
                     }
                     break;
                 case "btnForm":
-
-                    break;  
+                    new frmData().Show();
+                    break;
                 case "test":
                     var asasas = Path.GetTempPath(); //localtemp %temp%
                     var asa = Environment.CurrentDirectory; //localpath
                     var asas = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData); //%appdata%
                     (new Comunicacao()).CollectDataMQQT("", "TESTO");
                     break;
+            }
+        }
+
+        private async void function_SegundaEntrega()
+        {
+            while (btnOffArd.Enabled)
+            {
+                if ((new Random()).Next(0, 10000) % 2 == 0)
+                {
+                    //+
+                    int a = ((new Random().Next(0, 5)));
+                    if ((int.Parse(lblFlame.Tag.ToString()) + a) < 1024)
+                        lblFlame.Tag = int.Parse(lblFlame.Tag.ToString()) + a;
+
+                    await Task.Delay(100);
+                    a = ((new Random().Next(0, 5)));
+                    if ((float.Parse(lblHumidade.Tag.ToString()) + a) < 100 )
+                        lblHumidade.Tag = float.Parse(lblHumidade.Tag.ToString()) +a;
+
+                    await Task.Delay(100);
+                    a = ((new Random().Next(0, 5)));
+                    if ((float.Parse(lblTemp.Tag.ToString()) + a) < 150 )
+                        lblTemp.Tag = float.Parse(lblTemp.Tag.ToString()) +a;
+
+                    await Task.Delay(100);
+                    a = ((new Random().Next(0, 5)));
+                    if ((float.Parse(lblUSonic.Tag.ToString()) + a) < 401)
+                        lblUSonic.Tag = float.Parse(lblUSonic.Tag.ToString()) + a;
+
+                    await Task.Delay(100);
+                    a = ((new Random().Next(0, 5)));
+                    if ((int.Parse(lblSound.Tag.ToString()) + a) < 1024)
+                        lblSound.Tag = int.Parse(lblSound.Tag.ToString()) + a;
+                }
+                else
+                {
+                    int a = ((new Random().Next(0, 5)));
+
+                    if ((int.Parse(lblFlame.Tag.ToString()) - a) > 0)
+                        lblFlame.Tag = int.Parse(lblFlame.Tag.ToString()) - a;
+
+                    await Task.Delay(100);
+                    a = ((new Random().Next(0, 5)));
+                    if ((float.Parse(lblHumidade.Tag.ToString()) - a) > 0)
+                        lblHumidade.Tag = float.Parse(lblHumidade.Tag.ToString()) - a;
+
+                    await Task.Delay(100);
+                    a = ((new Random().Next(0, 5)));
+                    if ((float.Parse(lblTemp.Tag.ToString()) - a) > 0)
+                        lblTemp.Tag = float.Parse(lblTemp.Tag.ToString()) - a;
+
+                    await Task.Delay(100);
+                    a = ((new Random().Next(0, 5)));
+                    if ((float.Parse(lblUSonic.Tag.ToString()) - a) > 0)
+                        lblUSonic.Tag = float.Parse(lblUSonic.Tag.ToString()) - a;
+
+                    await Task.Delay(100);
+                    a = ((new Random().Next(0, 5)));
+                    if ((int.Parse(lblSound.Tag.ToString()) - a) > 0)
+                        lblSound.Tag = int.Parse(lblSound.Tag.ToString()) - a;
+                }
+
+                lblFlame.Invoke(new Action(() => lblFlame.Text = Properties.Resources.StringFlameSensor + " " + lblFlame.Tag.ToString()));
+                lblHumidade.Invoke(new Action(() => lblHumidade.Text = Properties.Resources.StringHumidity + " " + lblHumidade.Tag.ToString()));
+                lblTemp.Invoke(new Action(() => lblTemp.Text = Properties.Resources.StringTemperature + " " + lblTemp.Tag.ToString()));
+                lblUSonic.Invoke(new Action(() => lblUSonic.Text = Properties.Resources.StringUltraSonicSensor + " " + lblUSonic.Tag.ToString()));
+                lblSound.Invoke(new Action(() => lblSound.Text = Properties.Resources.StringSound + " " + lblSound.Tag.ToString()));
+
+                await Task.Delay(500);
             }
         }
 
