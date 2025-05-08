@@ -55,10 +55,7 @@ D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Collections.Immut
 D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Memory.xml
 D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Numerics.Vectors.xml
 D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-<<<<<<< HEAD
 D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC_.frmData.resources
-=======
->>>>>>> f358108bb73e027ca2755d6453a660cf090ba03f
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\protobuf-net-data.dll
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\protobuf-net.Core.dll
