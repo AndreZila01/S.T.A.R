@@ -74,3 +74,4 @@ C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\Syst
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Memory.xml
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC_.frmData.resources

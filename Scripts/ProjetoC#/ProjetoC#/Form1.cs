@@ -112,7 +112,7 @@ namespace ProjetoC_
 
                             new Thread(() =>
                             {
-                                function_SegundaEntrega();
+
 
                             }).Start();
                             //new Thread(new ThreadStart(function_SegundaEntrega)).Start();
@@ -140,6 +140,21 @@ namespace ProjetoC_
                     ofds.Multiselect = false;
                     if ((ofds.ShowDialog() == DialogResult.OK) && (ofds.SafeFileName.Contains(".xlsx") || ofds.SafeFileName.Contains(".json") || ofds.SafeFileName.Contains(".txt") || ofds.SafeFileName.Contains(".dat")))
                     {
+                        if(ofds.SafeFileName.Contains(".xlsx"))
+                            new ExpImpData().ImportData("", 0);
+                        else if (ofds.SafeFileName.Contains(".json"))
+                        {
+                            new ExpImpData().ImportData("", 0);
+                            //TODO import data
+                        }
+                        else if (ofds.SafeFileName.Contains(".txt"))
+                        {
+                            //TODO import data
+                        }
+                        else if (ofds.SafeFileName.Contains(".dat"))
+                        {
+                            //TODO import data
+                        }
                         //TODO import data
                     }
                     break;
@@ -152,75 +167,6 @@ namespace ProjetoC_
                     var asas = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData); //%appdata%
                     (new Comunicacao()).CollectDataMQQT("", "TESTO");
                     break;
-            }
-        }
-
-        private async void function_SegundaEntrega()
-        {
-            while (btnOffArd.Enabled)
-            {
-                if ((new Random()).Next(0, 10000) % 2 == 0)
-                {
-                    //+
-                    int a = ((new Random().Next(0, 5)));
-                    if ((int.Parse(lblFlame.Tag.ToString()) + a) < 1024)
-                        lblFlame.Tag = int.Parse(lblFlame.Tag.ToString()) + a;
-
-                    await Task.Delay(100);
-                    a = ((new Random().Next(0, 5)));
-                    if ((float.Parse(lblHumidade.Tag.ToString()) + a) < 100 )
-                        lblHumidade.Tag = float.Parse(lblHumidade.Tag.ToString()) +a;
-
-                    await Task.Delay(100);
-                    a = ((new Random().Next(0, 5)));
-                    if ((float.Parse(lblTemp.Tag.ToString()) + a) < 150 )
-                        lblTemp.Tag = float.Parse(lblTemp.Tag.ToString()) +a;
-
-                    await Task.Delay(100);
-                    a = ((new Random().Next(0, 5)));
-                    if ((float.Parse(lblUSonic.Tag.ToString()) + a) < 401)
-                        lblUSonic.Tag = float.Parse(lblUSonic.Tag.ToString()) + a;
-
-                    await Task.Delay(100);
-                    a = ((new Random().Next(0, 5)));
-                    if ((int.Parse(lblSound.Tag.ToString()) + a) < 1024)
-                        lblSound.Tag = int.Parse(lblSound.Tag.ToString()) + a;
-                }
-                else
-                {
-                    int a = ((new Random().Next(0, 5)));
-
-                    if ((int.Parse(lblFlame.Tag.ToString()) - a) > 0)
-                        lblFlame.Tag = int.Parse(lblFlame.Tag.ToString()) - a;
-
-                    await Task.Delay(100);
-                    a = ((new Random().Next(0, 5)));
-                    if ((float.Parse(lblHumidade.Tag.ToString()) - a) > 0)
-                        lblHumidade.Tag = float.Parse(lblHumidade.Tag.ToString()) - a;
-
-                    await Task.Delay(100);
-                    a = ((new Random().Next(0, 5)));
-                    if ((float.Parse(lblTemp.Tag.ToString()) - a) > 0)
-                        lblTemp.Tag = float.Parse(lblTemp.Tag.ToString()) - a;
-
-                    await Task.Delay(100);
-                    a = ((new Random().Next(0, 5)));
-                    if ((float.Parse(lblUSonic.Tag.ToString()) - a) > 0)
-                        lblUSonic.Tag = float.Parse(lblUSonic.Tag.ToString()) - a;
-
-                    await Task.Delay(100);
-                    a = ((new Random().Next(0, 5)));
-                    if ((int.Parse(lblSound.Tag.ToString()) - a) > 0)
-                        lblSound.Tag = int.Parse(lblSound.Tag.ToString()) - a;
-                }
-
-                lblFlame.Invoke(new Action(() => lblFlame.Text = Properties.Resources.StringFlameSensor + " " + lblFlame.Tag.ToString()));
-                lblHumidade.Invoke(new Action(() => lblHumidade.Text = Properties.Resources.StringHumidity + " " + lblHumidade.Tag.ToString()));
-                lblTemp.Invoke(new Action(() => lblTemp.Text = Properties.Resources.StringTemperature + " " + lblTemp.Tag.ToString()));
-                lblUSonic.Invoke(new Action(() => lblUSonic.Text = Properties.Resources.StringUltraSonicSensor + " " + lblUSonic.Tag.ToString()));
-                lblSound.Invoke(new Action(() => lblSound.Text = Properties.Resources.StringSound + " " + lblSound.Tag.ToString()));
-
-                await Task.Delay(500);
             }
         }
 
@@ -260,6 +206,11 @@ namespace ProjetoC_
                     //Erro ou bug
                     break;
             }
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            label5.Text = "Acceleration: "+trackBar1.Value;
         }
 
         /*

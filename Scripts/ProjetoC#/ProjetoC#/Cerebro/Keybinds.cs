@@ -80,7 +80,7 @@ namespace ProjetoC_.Cerebro
                     break;
 
                 Application.DoEvents(); // Processa eventos do sistema
-                Task.Delay(31); // Pequena pausa para evitar uso excessivo de CPU
+                Task.Delay(100); // Pequena pausa para evitar uso excessivo de CPU
             }
         }
 

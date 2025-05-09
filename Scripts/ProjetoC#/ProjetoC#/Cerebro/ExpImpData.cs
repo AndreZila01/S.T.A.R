@@ -99,5 +99,24 @@ namespace ProjetoC_.Cerebro
             //}
 
         }
+
+        public void ImportData(string data, int tipo)
+        {
+            switch(tipo)
+            {
+                case 0:
+                    ExcelData(data);
+                    break;
+                case 1:
+                    JSONData(data);
+                    break;
+                case 2:
+                    TXTData(data);
+                    break;
+                case 3:
+                    ProtobufData(data);
+                    break;
+            }
+        }
     }
 }
