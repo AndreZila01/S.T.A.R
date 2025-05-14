@@ -37,6 +37,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.btnIA = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnOnArd = new System.Windows.Forms.Button();
             this.btnOffArd = new System.Windows.Forms.Button();
@@ -67,21 +70,18 @@
             this.jsonjsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelxlsxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textFiletxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctIPV4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctDirectionalPad)).BeginInit();
             this.cmsData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -171,7 +171,7 @@
             // 
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.trackBar1);
-            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.btnIA);
             this.panel5.Controls.Add(this.btnExport);
             this.panel5.Controls.Add(this.btnOnArd);
             this.panel5.Controls.Add(this.btnOffArd);
@@ -185,6 +185,36 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(220, 392);
             this.panel5.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Location = new System.Drawing.Point(54, 175);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(121, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Acceleration: 24";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(6, 191);
+            this.trackBar1.Maximum = 51;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(208, 45);
+            this.trackBar1.TabIndex = 7;
+            this.trackBar1.Value = 24;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            // 
+            // btnIA
+            // 
+            this.btnIA.Location = new System.Drawing.Point(6, 142);
+            this.btnIA.Name = "btnIA";
+            this.btnIA.Size = new System.Drawing.Size(208, 23);
+            this.btnIA.TabIndex = 6;
+            this.btnIA.Text = "IA Start";
+            this.btnIA.UseVisualStyleBackColor = true;
+            this.btnIA.Click += new System.EventHandler(this.button_Click);
             // 
             // btnExport
             // 
@@ -503,35 +533,6 @@
             this.textFiletxtToolStripMenuItem.Text = "Text File (*.txt)";
             this.textFiletxtToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 142);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(208, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(6, 191);
-            this.trackBar1.Maximum = 51;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(208, 45);
-            this.trackBar1.TabIndex = 7;
-            this.trackBar1.Value = 24;
-            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Location = new System.Drawing.Point(54, 175);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(121, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Acceleration: 24";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -556,6 +557,7 @@
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -564,7 +566,6 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctDirectionalPad)).EndInit();
             this.cmsData.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -611,7 +612,7 @@
         private System.Windows.Forms.Label lblSound;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnIA;
     }
 }
 

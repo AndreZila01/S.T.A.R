@@ -44,8 +44,8 @@
             this.pctHumity = new System.Windows.Forms.PictureBox();
             this.pctTime = new System.Windows.Forms.PictureBox();
             this.pnlPrincipal = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctSound)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctUltraSonic)).BeginInit();
@@ -54,8 +54,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pctHumity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctTime)).BeginInit();
             this.pnlPrincipal.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -219,6 +219,15 @@
             this.pnlPrincipal.Size = new System.Drawing.Size(800, 402);
             this.pnlPrincipal.TabIndex = 1;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.tableLayoutPanel1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(800, 89);
+            this.panel2.TabIndex = 2;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -251,15 +260,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 89);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.tableLayoutPanel1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 89);
-            this.panel2.TabIndex = 2;
-            // 
             // frmData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,6 +269,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmData";
             this.Text = "frmData";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmData_FormClosing);
             this.Load += new System.EventHandler(this.frmData_Load);
             this.Resize += new System.EventHandler(this.frmData_Resize);
             this.panel1.ResumeLayout(false);
@@ -279,9 +280,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pctHumity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctTime)).EndInit();
             this.pnlPrincipal.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

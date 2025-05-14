@@ -26,6 +26,7 @@ namespace ProjetoC_
     {
         public string Keybinds = "";
         private Comunicacao _com_;
+        public string dataArduino = "";
         //public HashSet<Keys> teclasPressionadas = new HashSet<Keys>();
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -95,32 +96,34 @@ namespace ProjetoC_
                         if (ipv4 == "")
                             break;
 
-                        
+
                         if (IPAddress.TryParse(ipv4, out IPAddress address))
                         {
                             string path = (Interaction.InputBox(ipv4, "Ip Arduino")).Replace(" ", "");
                             //TODO: Perguntar ao Nathan as regras de Topic! Como por exemplo não ter no inicio /, etc...
 
-                            //_com_.StartMQQT(ipv4.ToString(), path, this);
-                            //this.Tag = path;
+                            _com_.StartMQQT(ipv4.ToString(), path, this);
+                            this.Tag = path;
 
-                            //while (pctIPV4.Tag.ToString() == "0")
-                            //    Thread.Sleep(200);
+                            while (pctIPV4.Tag.ToString() == "0")
+                                Thread.Sleep(200);
 
                             btnOnArd.Enabled = false;
                             btnOffArd.Enabled = true;
 
-                            new Thread(() =>
-                            {
+                            //new Thread(() =>
+                            //{
 
 
-                            }).Start();
+                            //}).Start();
                             //new Thread(new ThreadStart(function_SegundaEntrega)).Start();
                             break;
                         }
                         else
                             ipv4 = "O ip não é valido, escreva again!";
                     }
+                    break;
+                case "btnIA":
                     break;
                 case "btnExport":
                     new ExpImpData().ExcelData(txtData.Text.ToString());
@@ -136,30 +139,33 @@ namespace ProjetoC_
                     break;
                 case "btnImport":
                     OpenFileDialog ofds = new OpenFileDialog();
-                    ofds.Filter = "Data exported (*.xlsx, *.json, *.txt, *.dat)|*.xlsx, *.json, *.txt, *.dat";
+                    ofds.Filter = "Excel Files (*.xlsx)|*.xlsx|JSON Files (*.json)|*.json|Text Files (*.txt)|*.txt|Data Files (*.dat)|*.dat";
                     ofds.Multiselect = false;
                     if ((ofds.ShowDialog() == DialogResult.OK) && (ofds.SafeFileName.Contains(".xlsx") || ofds.SafeFileName.Contains(".json") || ofds.SafeFileName.Contains(".txt") || ofds.SafeFileName.Contains(".dat")))
                     {
-                        if(ofds.SafeFileName.Contains(".xlsx"))
-                            new ExpImpData().ImportData("", 0);
+                        string data = "";
+                        if (ofds.SafeFileName.Contains(".xlsx"))
+                            data = new ExpImpData().ImportData(ofds.FileName, 0);
                         else if (ofds.SafeFileName.Contains(".json"))
                         {
-                            new ExpImpData().ImportData("", 0);
-                            //TODO import data
+                            data = new ExpImpData().ImportData(ofds.FileName, 1);
                         }
                         else if (ofds.SafeFileName.Contains(".txt"))
                         {
+                            data = new ExpImpData().ImportData(ofds.FileName, 2);
                             //TODO import data
                         }
                         else if (ofds.SafeFileName.Contains(".dat"))
                         {
+                            data = new ExpImpData().ImportData(ofds.FileName, 3);
                             //TODO import data
                         }
-                        //TODO import data
+                        if (data != "")
+                            txtData.Text = data;
                     }
                     break;
                 case "btnForm":
-                    new frmData().Show();
+                    new frmData(this).Show();
                     break;
                 case "test":
                     var asasas = Path.GetTempPath(); //localtemp %temp%
@@ -210,7 +216,7 @@ namespace ProjetoC_
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            label5.Text = "Acceleration: "+trackBar1.Value;
+            label5.Text = "Acceleration: " + trackBar1.Value;
         }
 
         /*

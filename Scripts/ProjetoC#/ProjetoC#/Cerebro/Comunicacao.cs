@@ -58,6 +58,7 @@ namespace ProjetoC_.Cerebro
                     break;
                 case string a when a.Contains("Data"):
                     frm.txtData.Text = "";
+                    frm.dataArduino = "";
                     break;
                 default:
                     break;

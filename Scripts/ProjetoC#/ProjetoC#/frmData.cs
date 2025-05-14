@@ -12,22 +12,31 @@ namespace ProjetoC_
 {
     public partial class frmData : Form
     {
-        public frmData()
+        Timer tmr = new Timer();
+        Form1 frm;
+        public frmData(Form1 frm)
         {
             InitializeComponent();
+            this.frm = frm;
         }
 
         private void frmData_Load(object sender, EventArgs e)
         {
             pnlPrincipal.Controls.Clear();
+            tmr.Interval = 1000;
+            tmr.Tick += Tmr_Tick;
+            tmr.Start();
+        }
+
+        private void Tmr_Tick(object sender, EventArgs e)
+        {
+            CreatePnl("100", "520", "4555", "6000", "adad", "123123");
+            pnlPrincipal.AutoScrollPosition = new Point(0, pnlPrincipal.VerticalScroll.Maximum);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //flpPanel.Controls.Clear();
-            //WORK!!
-            CreatePnl("100", "520", "4555", "6000", "adad", "123123");
-            pnlPrincipal.AutoScrollPosition = new Point(0, pnlPrincipal.VerticalScroll.Maximum);
+            pnlPrincipal.Controls.Clear();
         }
 
         //DONT TOUCH!
@@ -207,6 +216,11 @@ namespace ProjetoC_
         private void frmData_Resize(object sender, EventArgs e)
         {
             pnlPrincipal.AutoScrollPosition = new Point(0, pnlPrincipal.VerticalScroll.Maximum);
+        }
+
+        private void frmData_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tmr.Stop();
         }
     }
 }

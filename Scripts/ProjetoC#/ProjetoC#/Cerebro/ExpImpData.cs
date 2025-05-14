@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProtoBuf.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static ProjetoC_.Cerebro.Class;
 
 namespace ProjetoC_.Cerebro
@@ -100,23 +101,96 @@ namespace ProjetoC_.Cerebro
 
         }
 
-        public void ImportData(string data, int tipo)
+        public string ImportData(string Path, int tipo)
         {
             switch(tipo)
             {
                 case 0:
-                    ExcelData(data);
+                    return ExcelImport(Path);
                     break;
                 case 1:
-                    JSONData(data);
+                    return TXTImport(Path);
                     break;
                 case 2:
-                    TXTData(data);
+                    return TXTImport(Path);
                     break;
                 case 3:
-                    ProtobufData(data);
+                    return DartImport(Path);
+                    break;
+                default:
+                    return "";
                     break;
             }
+        }
+
+        private string ExcelImport(string Path)
+        {
+            Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+            object misValue = System.Reflection.Missing.Value;
+
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook = xlApp.Workbooks.Open(Path);
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets[1];
+
+            int row = 2; // Começa na segunda linha (dados)
+
+            StringBuilder sb = new StringBuilder();
+            // Cabeçalho
+            sb.AppendLine("Data,UltraSonic_sensor,Flame_sensor,Temperatura,Humidade,Sound_sensor");
+
+            // Leitura linha por linha
+            while (xlWorkSheet.Cells[row, 1].Value2 != null)
+            {
+                string data = xlWorkSheet.Cells[row, 1].Value2.ToString();
+                string ultrasonic = xlWorkSheet.Cells[row, 2].Value2.ToString();
+                string flame = xlWorkSheet.Cells[row, 3].Value2.ToString();
+                string temperatura = xlWorkSheet.Cells[row, 4].Value2.ToString();
+                string humidade = xlWorkSheet.Cells[row, 5].Value2.ToString();
+                string sound = xlWorkSheet.Cells[row, 6].Value2.ToString();
+
+                sb.AppendLine($"{data},{ultrasonic},{flame},{temperatura},{humidade},{sound}");
+                row++;
+            }
+
+            // Fechar Excel
+            xlWorkBook.Close(false, misValue, misValue);
+            xlApp.Quit();
+
+            // Libertar recursos
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkSheet);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(xlWorkBook);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp);
+
+            // Retornar o texto
+
+            return JsonConvert.SerializeObject(sb.ToString(), Formatting.Indented);
+            
+        }
+
+        private string TXTImport(string Path)
+        {
+            return File.ReadAllText(Path);
+        }
+
+        private string DartImport(string Path)
+        {
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add(Properties.Resources.StringData, typeof(DateTime));
+            dt.Columns.Add(Properties.Resources.StringUltraSonicSensor, typeof(float));
+            dt.Columns.Add(Properties.Resources.StringFlameSensor, typeof(int));
+            dt.Columns.Add(Properties.Resources.StringTemperature, typeof(float));
+            dt.Columns.Add(Properties.Resources.StringHumidity, typeof(float));
+            dt.Columns.Add(Properties.Resources.StringSound, typeof(int));
+
+            dt = new DataTable();
+
+            using (Stream stream = File.OpenRead(Path))
+            using (IDataReader reader = DataSerializer.Deserialize(stream))
+            {
+                dt.Load(reader);
+                return reader.ToString();
+            }
+
         }
     }
 }
