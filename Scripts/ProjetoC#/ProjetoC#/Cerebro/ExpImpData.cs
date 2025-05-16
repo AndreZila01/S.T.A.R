@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using ProtoBuf.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -37,7 +38,7 @@ namespace ProjetoC_.Cerebro
             int l = 0;
             foreach(DataArduino dataArd in lst)//for (int l = 0; l < lst.Count(); l++)
             {
-                xlWorkSheet.Cells[2 + l, 1] = dataArd.data;
+                xlWorkSheet.Cells[2 + l, 1] = dataArd.NumberPing;
                 xlWorkSheet.Cells[2 + l, 2] = dataArd.UltraSonic_sensor;
                 xlWorkSheet.Cells[2 + l, 3] = dataArd.Flame_sensor;
                 xlWorkSheet.Cells[2 + l, 4] = dataArd.Temperatura;
@@ -46,8 +47,10 @@ namespace ProjetoC_.Cerebro
                 l++;
             }
 
-            xlWorkBook.SaveAs(tempPath+"\\outputData.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook, misValue, misValue, misValue, misValue,
-            Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs(Path.Combine(tempPath, "outputData.xlsx"), Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook,
+                misValue, misValue, misValue, misValue,
+                Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive,
+                misValue, misValue, misValue, misValue, misValue);
 
             xlWorkBook.Close();
             xlApp.Quit();
@@ -64,14 +67,14 @@ namespace ProjetoC_.Cerebro
             List<DataArduino> lst = JsonConvert.DeserializeObject<List<DataArduino>>(data);
             string info = "";
             foreach (DataArduino dataArd in lst)
-                info += $"{Properties.Resources.StringData}{dataArd.data}; {Properties.Resources.StringUltraSonicSensor}{dataArd.UltraSonic_sensor}; {Properties.Resources.StringFlameSensor}{dataArd.Flame_sensor};{Properties.Resources.StringTemperature}{dataArd.Temperatura};{Properties.Resources.StringHumidity}{dataArd.Humidade};{Properties.Resources.StringSound}{dataArd.Sound_sensor}\n";
+                info += $"{Properties.Resources.StringData}{dataArd.NumberPing}; {Properties.Resources.StringUltraSonicSensor}{dataArd.UltraSonic_sensor}; {Properties.Resources.StringFlameSensor}{dataArd.Flame_sensor};{Properties.Resources.StringTemperature}{dataArd.Temperatura};{Properties.Resources.StringHumidity}{dataArd.Humidade};{Properties.Resources.StringSound}{dataArd.Sound_sensor} \n";
             File.WriteAllText(tempPath + "\\outputData.txt", info);
         }
 
         public void ProtobufData(string data)
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add(Properties.Resources.StringData, typeof(DateTime));
+            dt.Columns.Add(Properties.Resources.StringData, typeof(int));
             dt.Columns.Add(Properties.Resources.StringUltraSonicSensor, typeof(float));
             dt.Columns.Add(Properties.Resources.StringFlameSensor, typeof(int));
             dt.Columns.Add(Properties.Resources.StringTemperature, typeof(float));
@@ -80,7 +83,7 @@ namespace ProjetoC_.Cerebro
 
             List<DataArduino> lst = JsonConvert.DeserializeObject<List<DataArduino>>(data);
             foreach (DataArduino dataArd in lst)
-                dt.Rows.Add(dataArd.data, dataArd.UltraSonic_sensor, dataArd.Flame_sensor, dataArd.Temperatura, dataArd.Humidade, dataArd.Sound_sensor);
+                dt.Rows.Add(dataArd.NumberPing, dataArd.UltraSonic_sensor, dataArd.Flame_sensor, dataArd.Temperatura, dataArd.Humidade, dataArd.Sound_sensor);
             
 
             using (Stream stream = File.OpenWrite(tempPath + "\\outputData.dat"))
@@ -109,7 +112,7 @@ namespace ProjetoC_.Cerebro
                     return ExcelImport(Path);
                     break;
                 case 1:
-                    return TXTImport(Path);
+                    return JSONImport(Path);
                     break;
                 case 2:
                     return TXTImport(Path);
@@ -133,10 +136,8 @@ namespace ProjetoC_.Cerebro
 
             int row = 2; // Começa na segunda linha (dados)
 
-            StringBuilder sb = new StringBuilder();
-            // Cabeçalho
-            sb.AppendLine("Data,UltraSonic_sensor,Flame_sensor,Temperatura,Humidade,Sound_sensor");
 
+            string texto= "[";
             // Leitura linha por linha
             while (xlWorkSheet.Cells[row, 1].Value2 != null)
             {
@@ -147,7 +148,8 @@ namespace ProjetoC_.Cerebro
                 string humidade = xlWorkSheet.Cells[row, 5].Value2.ToString();
                 string sound = xlWorkSheet.Cells[row, 6].Value2.ToString();
 
-                sb.AppendLine($"{data},{ultrasonic},{flame},{temperatura},{humidade},{sound}");
+                //sb.AppendLine($"{data},{ultrasonic},{flame},{temperatura},{humidade},{sound}");
+                texto = "{\"NumberPing\":\"" + data + ",\"UltraSonic_sensor\":\"" + ultrasonic + ",\"Flame_sensor\":\"" + flame + ",\"Temperatura\":\"" + temperatura + ",\"Humidade\":\"" + humidade + ",\"Sound_sensor\":\"" + sound + "},";
                 row++;
             }
 
@@ -162,20 +164,38 @@ namespace ProjetoC_.Cerebro
 
             // Retornar o texto
 
-            return JsonConvert.SerializeObject(sb.ToString(), Formatting.Indented);
-            
+            return texto.Substring(0, texto.Length - 1);
+
+        }
+
+        private string JSONImport(string Path)
+        {
+            return (File.ReadAllText(Path)).Replace("]", ",");
         }
 
         private string TXTImport(string Path)
         {
-            return File.ReadAllText(Path);
+            string texto = File.ReadAllText(Path).Replace("[", "").Replace("]", "").Replace("\n", "");
+
+            //JsonConvert.DeserializeObject(new DataArduino{Flame_sensor = 0, Humidade = 10, NumberPing = 1, Sound_sensor = 2, Temperatura = 1, UltraSonic_sensor = 1 });
+            string [] ad = texto.Split(new string[] { ";"}, StringSplitOptions.None);
+            ad = ad.Select(i => {
+                return i.Split(new string[] { ":" }, StringSplitOptions.None)[1];
+            }).ToArray();
+
+            texto = "[";
+            for(int i =0; i<ad.Length-1; i += 5)
+            {
+                texto += "{\"NumberPing\":\"" + ad[0+i] + ",\"UltraSonic_sensor\":\"" + ad[1+i] + ",\"Flame_sensor\":\"" + ad[2+i] + ",\"Temperatura\":\"" + ad[3+i] + ",\"Humidade\":\"" + ad[4 + i] + ",\"Sound_sensor\":\"" + ad[5 + i] + "},";
+            }
+            return texto.Substring(0, texto.Length - 1);
         }
 
         private string DartImport(string Path)
         {
 
             DataTable dt = new DataTable();
-            dt.Columns.Add(Properties.Resources.StringData, typeof(DateTime));
+            dt.Columns.Add(Properties.Resources.StringData, typeof(int));
             dt.Columns.Add(Properties.Resources.StringUltraSonicSensor, typeof(float));
             dt.Columns.Add(Properties.Resources.StringFlameSensor, typeof(int));
             dt.Columns.Add(Properties.Resources.StringTemperature, typeof(float));
@@ -184,6 +204,7 @@ namespace ProjetoC_.Cerebro
 
             dt = new DataTable();
 
+            //TODO: acabar isto
             using (Stream stream = File.OpenRead(Path))
             using (IDataReader reader = DataSerializer.Deserialize(stream))
             {

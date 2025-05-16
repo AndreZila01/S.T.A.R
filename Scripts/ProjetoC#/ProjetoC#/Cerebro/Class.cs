@@ -15,7 +15,7 @@ namespace ProjetoC_.Cerebro
 		}
 		internal class DataArduino
 		{
-			public DateTime data {  get; set; }
+			public int NumberPing {  get; set; }
 			public float UltraSonic_sensor {  get; set; }
 			public int Flame_sensor {  get; set; }
 			public float Temperatura {  get; set; }

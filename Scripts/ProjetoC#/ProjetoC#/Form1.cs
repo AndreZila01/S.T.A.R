@@ -31,7 +31,11 @@ namespace ProjetoC_
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.ActiveControl = null; lblFlame.Text = Properties.Resources.StringFlameSensor; lblHumidade.Text = Properties.Resources.StringHumidity; lblTemp.Text = Properties.Resources.StringTemperature; lblUSonic.Text = Properties.Resources.StringUltraSonicSensor; lblSound.Text = Properties.Resources.StringSound; timer1.Start();
+            if (this.ActiveControl != null)
+            {
+                this.ActiveControl = null;
+                this.ActiveControl = null; lblFlame.Text = Properties.Resources.StringFlameSensor; lblHumidade.Text = Properties.Resources.StringHumidity; lblTemp.Text = Properties.Resources.StringTemperature; lblUSonic.Text = Properties.Resources.StringUltraSonicSensor; lblSound.Text = Properties.Resources.StringSound; timer1.Start();
+            }
         }
         public Form1() { InitializeComponent(); }
 
@@ -42,6 +46,14 @@ namespace ProjetoC_
 
             if (!bgwStart.IsBusy)
                 bgwStart.RunWorkerAsync();
+
+            //    public int NumberPing
+            //public float UltraSonic_sensor 
+            //public int Flame_sensor 
+            //public float Temperatura 
+            //public float Humidade 
+            //public int Sound_sensor 
+            txtData.Text = "[{\"NumberPing\":1, \"UltraSonic_sensor\":0.5, \"Flame_sensor\":0, \"Temperatura\":0.2, \"Humidade\":0.7, \"Sound_sensor\":1},{\"NumberPing\":1, \"UltraSonic_sensor\":0.5, \"Flame_sensor\":0, \"Temperatura\":0.2, \"Humidade\":0.7, \"Sound_sensor\":1}]";
         }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -50,6 +62,7 @@ namespace ProjetoC_
             {
                 try
                 {
+                    Keybinds = "";
                     Console.WriteLine("Teste");
                     new Keybinds().Background_Keybinds(this);
                 }
@@ -66,7 +79,8 @@ namespace ProjetoC_
             this.ActiveControl = null;
             if (Keybinds != txtInput.Text)
             {
-                txtInput.Text = Keybinds.Replace("\n", Environment.NewLine);
+                if (Keybinds != "PARAR")
+                    txtInput.Text = Keybinds.Replace("\n", Environment.NewLine);
                 txtInput.SelectionStart = txtInput.Text.Length;
                 txtInput.ScrollToCaret();
             }
@@ -83,10 +97,18 @@ namespace ProjetoC_
                     System.Windows.Forms.Clipboard.SetText(Keybinds);
                     break;
                 case "btnInput":
-                    if (txtInput.Text.Contains("ON"))
-                        btnInput.Text = "Input ON";
-                    else
+                    if (btnInput.Text.Contains("ON"))
+                    {
                         btnInput.Text = "Input OFF";
+                        Keybinds = "PARAR";
+                    }
+                    else
+                    {
+                        btnInput.Text = "Input ON";
+
+                        if (!bgwStart.IsBusy)
+                            bgwStart.RunWorkerAsync();
+                    }
                     break;
                 case "btnOnArd":
                     string ipv4 = "Escreva o IP do arduino:";
@@ -100,7 +122,7 @@ namespace ProjetoC_
                         if (IPAddress.TryParse(ipv4, out IPAddress address))
                         {
                             string path = (Interaction.InputBox(ipv4, "Ip Arduino")).Replace(" ", "");
-                            //TODO: Perguntar ao Nathan as regras de Topic! Como por exemplo não ter no inicio /, etc...
+                            //TODO: Perguntar ao Nathan as regras de Topic! Como por exemplo ter no inicio /, etc... /PBL/Veiculo
 
                             _com_.StartMQQT(ipv4.ToString(), path, this);
                             this.Tag = path;
@@ -124,6 +146,7 @@ namespace ProjetoC_
                     }
                     break;
                 case "btnIA":
+
                     break;
                 case "btnExport":
                     new ExpImpData().ExcelData(txtData.Text.ToString());
@@ -144,6 +167,7 @@ namespace ProjetoC_
                     if ((ofds.ShowDialog() == DialogResult.OK) && (ofds.SafeFileName.Contains(".xlsx") || ofds.SafeFileName.Contains(".json") || ofds.SafeFileName.Contains(".txt") || ofds.SafeFileName.Contains(".dat")))
                     {
                         string data = "";
+                        txtData.Text = "";
                         if (ofds.SafeFileName.Contains(".xlsx"))
                             data = new ExpImpData().ImportData(ofds.FileName, 0);
                         else if (ofds.SafeFileName.Contains(".json"))
@@ -192,19 +216,19 @@ namespace ProjetoC_
         {
             switch (((System.Windows.Forms.ToolStripMenuItem)sender).Tag)
             {
-                case 0:
+                case "0":
                     new ExpImpData().ProtobufData(txtData.Text.ToString());
                     //Protobuf
                     break;
-                case 1:
+                case "1":
                     new ExpImpData().JSONData(txtData.Text.ToString());
                     //JSON
                     break;
-                case 2:
+                case "2":
                     new ExpImpData().ExcelData(txtData.Text.ToString());
                     //Excel
                     break;
-                case 3:
+                case "3":
                     new ExpImpData().TXTData(txtData.Text.ToString());
                     //Txt
                     break;

@@ -57,7 +57,9 @@ namespace ProjetoC_.Cerebro
                     frm.pctIPV4.Tag = "1";
                     break;
                 case string a when a.Contains("Data"):
-                    frm.txtData.Text = "";
+                    string values = a.Split(new string[] { "Data" }, StringSplitOptions.None)[1];
+                    frm.txtData.Text = "{\"NumberPing\":\"" + values + ",\"UltraSonic_sensor\":\"" + values + ",\"Flame_sensor\":\"" + values + ",\"Temperatura\":\"" + values + ",\"Humidade\":\"" + values + ",\"Sound_sensor\":\"" + values + "},";
+                    //TODO: Acabar e discutir o melhor metodo de ler e enviar dados!
                     frm.dataArduino = "";
                     break;
                 default:

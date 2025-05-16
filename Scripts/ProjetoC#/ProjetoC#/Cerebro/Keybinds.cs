@@ -69,7 +69,7 @@ namespace ProjetoC_.Cerebro
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
 
-        public void Background_Keybinds(Form1 m)
+        public async void Background_Keybinds(Form1 m)
         {
             frm = m;
             teclasPressionadas = new HashSet<Keys>();
@@ -80,7 +80,7 @@ namespace ProjetoC_.Cerebro
                     break;
 
                 Application.DoEvents(); // Processa eventos do sistema
-                Task.Delay(700); // Pequena pausa para evitar uso excessivo de CPU
+                                        //await Task.Delay(5); // Pequena pausa para evitar uso excessivo de CPU
             }
         }
 
@@ -176,7 +176,10 @@ namespace ProjetoC_.Cerebro
                 }
             }
             else
+            {
+                frm.Keybinds += "WAIT\n";
                 ChangeImageGamePad(Properties.Resources.directionalpad);
+            }
         }
 
         private static void ChangeImageGamePad(System.Drawing.Bitmap bitmap)
