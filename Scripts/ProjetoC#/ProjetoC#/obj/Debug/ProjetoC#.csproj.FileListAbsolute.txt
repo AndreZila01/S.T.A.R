@@ -50,11 +50,7 @@ D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Runtime.CompilerS
 D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\protobuf-net.xml
 D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\protobuf-net-data.xml
 D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\protobuf-net.Core.xml
-D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Buffers.xml
 D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Collections.Immutable.xml
-D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Memory.xml
-D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Numerics.Vectors.xml
-D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC_.frmData.resources
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\protobuf-net-data.dll
@@ -75,3 +71,5 @@ C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\Syst
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Andre\Desktop\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC_.frmData.resources
+D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC#.csproj.SuggestedBindingRedirects.cache
+D:\GitHub\S.T.A.R\Scripts\ProjetoC#\ProjetoC#\obj\Debug\ProjetoC#.exe.config

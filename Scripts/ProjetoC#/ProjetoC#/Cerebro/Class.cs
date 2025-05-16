@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace ProjetoC_.Cerebro
 {
@@ -21,6 +22,22 @@ namespace ProjetoC_.Cerebro
 			public float Temperatura {  get; set; }
 			public float Humidade {  get; set; }
 			public int Sound_sensor {  get; set; }
+        }
+		[ProtoContract]
+        internal class DataArduinoProto
+        {
+            [ProtoMember(1)]
+            public int NumberPing { get; set; }
+            [ProtoMember(2)]
+            public float UltraSonic_sensor { get; set; }
+            [ProtoMember(3)]
+            public int Flame_sensor { get; set; }
+            [ProtoMember(4)]
+            public float Temperatura { get; set; }
+            [ProtoMember(5)]
+            public float Humidade { get; set; }
+            [ProtoMember(6)]
+            public int Sound_sensor { get; set; }
         }
     }
 }
