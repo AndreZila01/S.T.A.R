@@ -54,16 +54,19 @@ namespace ProjetoC_.Cerebro
                 {
                     if (teclaStr == "A" || teclaStr == "S" || teclaStr == "D" || teclaStr == "W")
                         teclasPressionadas.Remove(tecla);
+
                     Console.WriteLine($"Tecla Solta: {teclaStr}");
 
                     if (teclasPressionadas.Count == 0)
                     {
                         Console.WriteLine("Nenhuma tecla pressionada!");
                         if (frm.txtInput.Tag.ToString() != "WAIT")
+                        {
                             frm.txtInput.Tag = "WAIT";
+                            ChangeDirectionalPad();
+                        }
                     }
 
-                    ChangeDirectionalPad();
                 }
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
@@ -124,7 +127,7 @@ namespace ProjetoC_.Cerebro
 
                 int quantidade = lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade;
 
-                if (quantidade != 1)
+                if (quantidade != 1 && teclas != "\n")
                 {
                     var temp = frm.Keybinds.Split(new string[] { "\n" }, StringSplitOptions.None);
 

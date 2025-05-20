@@ -118,6 +118,7 @@
             this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Request IPV4";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pictureBox3
             // 
@@ -193,7 +194,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(121, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Acceleration: 24";
+            this.label5.Text = "Acceleration: 28";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // trackBar1
@@ -203,7 +204,7 @@
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(208, 45);
             this.trackBar1.TabIndex = 7;
-            this.trackBar1.Value = 24;
+            this.trackBar1.Value = 28;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // btnIA

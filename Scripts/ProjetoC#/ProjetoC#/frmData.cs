@@ -17,26 +17,26 @@ namespace ProjetoC_
         public frmData(Form1 frm)
         {
             InitializeComponent();
-            this.frm = frm;
+            this.frm = frm; // envias o frm para this.frm. Este frm, é o valor enviado quando chamos o new frmData(this).Show()
         }
 
         private void frmData_Load(object sender, EventArgs e)
         {
-            pnlPrincipal.Controls.Clear();
-            tmr.Interval = 1000;
-            tmr.Tick += Tmr_Tick;
-            tmr.Start();
+            pnlPrincipal.Controls.Clear(); // apaga tudo o que tiver dentro do pnlPrincipal
+            tmr.Interval = 1000; // cria um intervalo de 1 segundo
+            tmr.Tick += Tmr_Tick; // cria um evento chamado Tick, cada vez que passa 1 seg
+            tmr.Start(); // e começa
         }
 
         private void Tmr_Tick(object sender, EventArgs e)
         {
-            CreatePnl("100", "520", "4555", "6000", "adad", "123123");
-            pnlPrincipal.AutoScrollPosition = new Point(0, pnlPrincipal.VerticalScroll.Maximum);
+            CreatePnl("100", "520", "4555", "6000", "adad", "123123"); // cada segundo cria os objetos e manda para o pnlPrincipal
+            pnlPrincipal.AutoScrollPosition = new Point(0, pnlPrincipal.VerticalScroll.Maximum); // faz autoscroll com base na posição atal
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            pnlPrincipal.Controls.Clear();
+            pnlPrincipal.Controls.Clear(); // apaga tudo o que tiver dentro do pnlPrincipal 
         }
 
         //DONT TOUCH!
@@ -215,12 +215,12 @@ namespace ProjetoC_
 
         private void frmData_Resize(object sender, EventArgs e)
         {
-            pnlPrincipal.AutoScrollPosition = new Point(0, pnlPrincipal.VerticalScroll.Maximum);
+            pnlPrincipal.AutoScrollPosition = new Point(0, pnlPrincipal.VerticalScroll.Maximum); // quando alterares o tamanho do form, altera a posição do scroll.
         }
 
         private void frmData_FormClosing(object sender, FormClosingEventArgs e)
         {
-            tmr.Stop();
+            tmr.Stop(); // para o tempo!
         }
     }
 }
