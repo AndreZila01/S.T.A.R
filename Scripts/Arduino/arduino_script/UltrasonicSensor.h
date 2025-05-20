@@ -9,7 +9,7 @@ class UltrasonicSensor {
   public:
     UltrasonicSensor(int trig, int echo);
     void begin();
-    float getDistance();
+    int getDistance();
 };
 
 #endif

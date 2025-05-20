@@ -11,7 +11,7 @@ void UltrasonicSensor::begin() {
   pinMode(echoPin, INPUT);
 }
 
-float UltrasonicSensor::getDistance() {
+ int UltrasonicSensor::getDistance() {
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
@@ -19,6 +19,8 @@ float UltrasonicSensor::getDistance() {
   digitalWrite(trigPin, LOW);
 
   float duration = pulseIn(echoPin, HIGH);
-  float distance = (duration * 0.0343) / 2;
-  return distance;
+  float distance = (duration * 0.0343) / 2.0;
+
+  return (int)distance; // Retorna a distância em cm como inteiro
 }
+
