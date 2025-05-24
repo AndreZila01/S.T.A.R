@@ -4,12 +4,11 @@
 class FlameSensor {
   private:
     int sensorPin;
-    int ledPin;
 
   public:
-    FlameSensor(int sensor, int led);
+    FlameSensor(int sensor);
     void begin();
-    void checkFlame();
+    int checkFlame();
 };
 
 #endif

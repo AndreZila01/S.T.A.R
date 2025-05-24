@@ -8,16 +8,13 @@ FlameSensor::FlameSensor(int sensor, int led) {
 
 void FlameSensor::begin() {
   pinMode(sensorPin, INPUT);
-  pinMode(ledPin, OUTPUT);
 }
 
-void FlameSensor::checkFlame() {
+int FlameSensor::checkFlame() {
   int flameDetected = digitalRead(sensorPin);
   if (flameDetected == HIGH) {
-    Serial.println("FIRE DETECTED!");
-    digitalWrite(ledPin, HIGH);
+    return 1;
   } else {
-    Serial.println("No Fire");
-    digitalWrite(ledPin, LOW);
+    return 0;
   }
 }

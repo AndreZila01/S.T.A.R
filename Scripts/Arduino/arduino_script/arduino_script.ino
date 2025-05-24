@@ -11,7 +11,7 @@
 
 Motor motor_direito_frente(15, 2);
 bool motor_direito_frente_direction = true;
-Motor motor_direito_tras(4, 5);
+Motor motor_direito_tras(18, 5);
 bool motor_direito_tras_direction = true;
 
 Motor motor_esquerda_frente(27, 14);
@@ -21,11 +21,11 @@ bool motor_esquerdo_tras_direction = true;
 
 // // //mudar os pinos
 // Buzzer buzzer(9); // Buzzer no pino 9
-// AnalogSensor soundSensor(9); // Sensor ligado ao pino analógico A9
-// DHTSensor dhtSensor(5); // DHT11 ligado ao pino 5
-// FlameSensor flame(11, 10);  // sensorPin = 11, ledPin = 10 
+  AnalogSensor soundSensor(34);
+// DHTSensor dhtSensor(5); 
+  FlameSensor flame(35);  
   UltrasonicSensor ultrasonicsensor(21, 19);
-// // Update these with values suitable for your network.
+
 
 #include <WiFi.h>
 #include <PubSubClient.h>
@@ -34,7 +34,7 @@ bool motor_esquerdo_tras_direction = true;
 
 const char* ssid = "Visitors";
 const char* password = "";
-const char* mqtt_server = "10.36.248.87";
+const char* mqtt_server = "10.36.243.198";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -129,9 +129,9 @@ void setup() {
   
   //sensores
   ultrasonicsensor.begin();
-  // flame.begin();
+  flame.begin();
   // dhtSensor.begin();
-  // soundSensor.begin();
+  soundSensor.begin();
   // buzzer.begin();
 
   //motores
@@ -155,6 +155,8 @@ void virar_esquerda(){
 
   motor_esquerda_tras.backward();
   motor_esquerda_frente.backward();
+  delay(1000);
+  stop();
 }
 
 void virar_direito(){
@@ -163,6 +165,8 @@ void virar_direito(){
 
   motor_esquerda_tras.forward();
   motor_esquerda_frente.forward();
+  delay(1000);
+  stop();
 }
 
 void frente(){
@@ -181,6 +185,8 @@ void tras(){
 
   motor_esquerda_tras.backward();
   motor_esquerda_frente.backward();
+  delay(1000);
+  stop();
 }
 
 void loop() {
@@ -194,15 +200,41 @@ void loop() {
   if (now - lastMsg > 2000) {
     lastMsg = now;
     ++value;
+
+    //mandar ultrasonic_data:    
     int distancia = ultrasonicsensor.getDistance();  // Faz a leitura do sensor
-    snprintf(msg, MSG_BUFFER_SIZE, "Distancia: %.d cm", distancia);
+    snprintf(msg, MSG_BUFFER_SIZE, "D_%.d", distancia);
     Serial.print("Publicando: ");
     Serial.println(msg);
     client.publish("/test/", msg);
+    
+    //mandar temperatura:
 
     // snprintf (msg, MSG_BUFFER_SIZE, "hello world #%ld", value);
     // Serial.print("Publish message: ");
     // Serial.println(msg);
-    // client.publish("outTopic", msg);
+    // client.publish("/test/", msg);
+
+    //mandar se há fogo:
+    int fogo = flame.checkFlame();
+      if(fogo == 1){
+          snprintf (msg, MSG_BUFFER_SIZE, "F_T");
+          Serial.print("Publish message: há fogo!!");
+          Serial.println(msg);
+          client.publish("/test/", msg);
+      }
+      else{
+          snprintf (msg, MSG_BUFFER_SIZE, "F_F");
+          Serial.print("Publish message: Não há fogo!");
+          Serial.println(msg);
+          client.publish("/test/", msg);
+      }
+
+    //mandar sensor de som:
+    int som = soundSensor.readValue();  // Faz a leitura do sensor
+    snprintf(msg, MSG_BUFFER_SIZE, "S_%.d", som);
+    Serial.print("Publicando: ");
+    Serial.println(msg);
+    client.publish("/test/", msg);
   }
 }
