@@ -110,10 +110,10 @@ namespace ProjetoC_.Cerebro
                 }
 
                 string teclas = "";
-                if (teclasPressionadas.Count() == 2)
-                    teclas = $"{teclasPressionadas.ToArray()[0]}{teclasPressionadas.ToArray()[1]}";
-                else
-                    teclas = $"{teclasPressionadas.ToArray()[0]}";
+                //if (teclasPressionadas.Count() == 2)
+                //    teclas = $"{teclasPressionadas.ToArray()[0]}{teclasPressionadas.ToArray()[1]}";
+                //else
+                teclas = $"{teclasPressionadas.ToArray()[0]}";
 
                 if (lstLastKeyBinds.Count() != 0)
                 {
@@ -127,24 +127,10 @@ namespace ProjetoC_.Cerebro
 
                 int quantidade = lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade;
 
-                if (quantidade != 1 && teclas != "\n")
-                {
-                    var temp = frm.Keybinds.Split(new string[] { "\n" }, StringSplitOptions.None);
+                Console.WriteLine($"{quantidade} != 1 && {teclas} != \\n && {teclas} != WAIT");
 
-                    if (quantidade % 10 == 0)
-                        quantidade--;
 
-                    int lenghremove = ($"\n ({quantidade})").Length + 1;
-
-                    if (teclas.Length == 2 && quantidade > 1)
-                        lenghremove++;
-
-                    if (quantidade == 2)
-                        lenghremove = (teclas + "\n").Length;
-                    frm.Keybinds = frm.Keybinds.Remove(frm.Keybinds.Length - (lenghremove), lenghremove) + $"{teclas} ({lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade})\n";
-                }
-                else
-                    frm.Keybinds += teclas.ToString() + "\n";
+                frm.ChangeMovement_Arduino(teclas);
 
                 switch (teclas)
                 {
@@ -177,6 +163,31 @@ namespace ProjetoC_.Cerebro
                         ChangeImageGamePad(Properties.Resources.DirectionalPad_C);
                         break;
                 }
+
+                if(lstLastKeyBinds.Count()>2)
+                if (lstLastKeyBinds[lstLastKeyBinds.Count() - 2].Tecla == "WAIT")
+                    teclas = "\n";
+
+                if (quantidade != 1 && teclas != "\n" && teclas != "WAIT")
+                {
+                    var temp = frm.Keybinds.Split(new string[] { "\n" }, StringSplitOptions.None);
+
+                    if (quantidade % 10 == 0)
+                        quantidade--;
+
+                    int lenghremove = ($"\n ({quantidade})").Length + 1;
+
+                    if (teclas.Length == 2 && quantidade > 1)
+                        lenghremove++;
+
+                    if (quantidade == 2)
+                        lenghremove = (teclas + "\n").Length;
+
+                    if(frm.Keybinds!= "")
+                    frm.Keybinds = frm.Keybinds.Remove(frm.Keybinds.Length - (lenghremove), lenghremove) + $"{teclas} ({lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade})\n";
+                }
+                else
+                    frm.Keybinds += teclas.ToString() + "\n";
             }
             else
             {

@@ -43,6 +43,7 @@ namespace ProjetoC_.Cerebro
 
         public void CollectDataMQQT(string Path, string Message)
         {
+            if(client != null)
             client.Publish(Path, Encoding.UTF8.GetBytes(Message), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false); // envia os dados que quer ao cliente, com o topico indicado
         }
 

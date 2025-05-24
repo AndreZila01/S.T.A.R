@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static ProjetoC_.Cerebro.Class;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ProjetoC_
@@ -139,7 +140,7 @@ namespace ProjetoC_
                     }
                     break;
                 case "btnIA": // se o botão tiver o nome de btnIA
-
+                    // um W é 30 cm 
                     break;
                 case "btnExport": // se o botão tiver o nome de btnExport
                     new ExpImpData().ExcelData(txtData.Text.ToString()); // criamos uma ligação a class ExpImpData e exportamos os dados do txtData.Text para Excel.
@@ -188,6 +189,7 @@ namespace ProjetoC_
                     var asa = Environment.CurrentDirectory; //localpath
                     var asas = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData); //%appdata%
                     (new Comunicacao()).CollectDataMQQT("", "TESTO");
+                    _com_.CollectDataMQQT("/test/", "WAIT");
                     break;
             }
         }
@@ -239,6 +241,11 @@ namespace ProjetoC_
         {
             string texto = (Interaction.InputBox("", "Texto")).Replace(" ", ""); // teste!
             _com_.CollectDataMQQT("/test/", texto);
+        }
+
+        public void ChangeMovement_Arduino(string keybind)
+        {
+            _com_.CollectDataMQQT("/test/", keybind);
         }
 
         /*
