@@ -29,10 +29,9 @@
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pctIPV4 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -71,7 +70,6 @@
             this.excelxlsxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textFiletxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctIPV4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -86,9 +84,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(196)))), ((int)(((byte)(151)))));
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.pctIPV4);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -97,47 +94,24 @@
             this.panel1.Size = new System.Drawing.Size(800, 69);
             this.panel1.TabIndex = 0;
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(686, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Ligação USB";
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(683, 12);
+            this.label1.Location = new System.Drawing.Point(683, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Request IPV4";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox3.Image = global::ProjetoC_.Properties.Resources.Off;
-            this.pictureBox3.Location = new System.Drawing.Point(762, 38);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(26, 24);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
-            // 
             // pctIPV4
             // 
             this.pctIPV4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pctIPV4.Image = global::ProjetoC_.Properties.Resources.Off;
-            this.pctIPV4.Location = new System.Drawing.Point(762, 6);
+            this.pctIPV4.Location = new System.Drawing.Point(762, 23);
             this.pctIPV4.Name = "pctIPV4";
             this.pctIPV4.Size = new System.Drawing.Size(26, 24);
             this.pctIPV4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -170,6 +144,7 @@
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(186)))), ((int)(((byte)(133)))));
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.trackBar1);
             this.panel5.Controls.Add(this.btnIA);
@@ -199,6 +174,7 @@
             // 
             // trackBar1
             // 
+            this.trackBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(228)))), ((int)(((byte)(223)))));
             this.trackBar1.Location = new System.Drawing.Point(6, 191);
             this.trackBar1.Maximum = 51;
             this.trackBar1.Name = "trackBar1";
@@ -209,6 +185,7 @@
             // 
             // btnIA
             // 
+            this.btnIA.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.btnIA.Location = new System.Drawing.Point(6, 142);
             this.btnIA.Name = "btnIA";
             this.btnIA.Size = new System.Drawing.Size(208, 23);
@@ -221,6 +198,7 @@
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.btnExport.Location = new System.Drawing.Point(6, 327);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(208, 23);
@@ -234,6 +212,7 @@
             // 
             this.btnOnArd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOnArd.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.btnOnArd.Location = new System.Drawing.Point(6, 56);
             this.btnOnArd.Name = "btnOnArd";
             this.btnOnArd.Size = new System.Drawing.Size(208, 23);
@@ -247,6 +226,7 @@
             this.btnOffArd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOffArd.Enabled = false;
+            this.btnOffArd.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.btnOffArd.Location = new System.Drawing.Point(6, 114);
             this.btnOffArd.Name = "btnOffArd";
             this.btnOffArd.Size = new System.Drawing.Size(208, 23);
@@ -259,6 +239,7 @@
             // 
             this.btnClearData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearData.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.btnClearData.Location = new System.Drawing.Point(6, 356);
             this.btnClearData.Name = "btnClearData";
             this.btnClearData.Size = new System.Drawing.Size(208, 23);
@@ -281,6 +262,7 @@
             // 
             this.btnForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnForm.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.btnForm.Location = new System.Drawing.Point(6, 85);
             this.btnForm.Name = "btnForm";
             this.btnForm.Size = new System.Drawing.Size(208, 23);
@@ -294,7 +276,7 @@
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(217)))), ((int)(((byte)(188)))));
             this.panel4.Controls.Add(this.panel6);
             this.panel4.Controls.Add(this.btnImport);
             this.panel4.Controls.Add(this.txtData);
@@ -307,7 +289,7 @@
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BackColor = System.Drawing.SystemColors.Control;
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(228)))), ((int)(((byte)(223)))));
             this.panel6.Controls.Add(this.lblSound);
             this.panel6.Controls.Add(this.lblHumidade);
             this.panel6.Controls.Add(this.lblTemp);
@@ -384,6 +366,7 @@
             // 
             this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImport.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.btnImport.Location = new System.Drawing.Point(18, 366);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(270, 23);
@@ -397,6 +380,7 @@
             this.txtData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(228)))), ((int)(((byte)(223)))));
             this.txtData.Location = new System.Drawing.Point(6, 191);
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
@@ -407,6 +391,7 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(217)))), ((int)(((byte)(188)))));
             this.panel3.Controls.Add(this.btnInput);
             this.panel3.Controls.Add(this.btnCopy);
             this.panel3.Controls.Add(this.btnClear);
@@ -422,6 +407,7 @@
             // 
             this.btnInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInput.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.btnInput.Location = new System.Drawing.Point(197, 357);
             this.btnInput.Name = "btnInput";
             this.btnInput.Size = new System.Drawing.Size(70, 23);
@@ -436,6 +422,7 @@
             // 
             this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCopy.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.btnCopy.Location = new System.Drawing.Point(104, 357);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(70, 23);
@@ -448,6 +435,7 @@
             // 
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
             this.btnClear.Location = new System.Drawing.Point(12, 356);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(70, 23);
@@ -461,6 +449,7 @@
             this.txtInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(228)))), ((int)(((byte)(223)))));
             this.txtInput.Location = new System.Drawing.Point(12, 215);
             this.txtInput.Multiline = true;
             this.txtInput.Name = "txtInput";
@@ -474,6 +463,7 @@
             // 
             this.pctDirectionalPad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pctDirectionalPad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(228)))), ((int)(((byte)(223)))));
             this.pctDirectionalPad.Image = global::ProjetoC_.Properties.Resources.directionalpad;
             this.pctDirectionalPad.Location = new System.Drawing.Point(12, 10);
             this.pctDirectionalPad.Name = "pctDirectionalPad";
@@ -538,10 +528,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(196)))), ((int)(((byte)(151)))));
             this.ClientSize = new System.Drawing.Size(800, 461);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1500, 750);
             this.MinimumSize = new System.Drawing.Size(800, 500);
@@ -552,7 +544,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctIPV4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -577,9 +568,7 @@
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		public System.Windows.Forms.PictureBox pctIPV4;
-		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
 		private System.IO.Ports.SerialPort serialPort1;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Panel panel4;

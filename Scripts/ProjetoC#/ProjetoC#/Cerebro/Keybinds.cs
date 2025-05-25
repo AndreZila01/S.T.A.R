@@ -102,13 +102,6 @@ namespace ProjetoC_.Cerebro
         {
             if (teclasPressionadas.Count > 0 && frm.btnInput.Text.Contains("ON"))
             {
-                if (frm.txtInput.Tag.ToString() == "WAIT")
-                {
-                    lstLastKeyBinds.Add(new Keybind { Quantidade = 1, Tecla = "WAIT" });
-                    frm.Keybinds += "Wait\n";
-                    frm.txtInput.Text = frm.Keybinds.Replace("\n", Environment.NewLine);
-                }
-
                 string teclas = "";
                 //if (teclasPressionadas.Count() == 2)
                 //    teclas = $"{teclasPressionadas.ToArray()[0]}{teclasPressionadas.ToArray()[1]}";
@@ -164,10 +157,11 @@ namespace ProjetoC_.Cerebro
                         break;
                 }
 
-                if(lstLastKeyBinds.Count()>2)
-                if (lstLastKeyBinds[lstLastKeyBinds.Count() - 2].Tecla == "WAIT")
-                    teclas = "\n";
+                //if(lstLastKeyBinds.Count()>2)
+                //if (lstLastKeyBinds[lstLastKeyBinds.Count() - 2].Tecla == "WAIT")
+                //    teclas = "\n";
 
+                Console.WriteLine($"{quantidade} != 1 && {teclas} != \"\\n\" && {teclas} != \"WAIT\" - {quantidade != 1 && teclas != "\n" && teclas != "WAIT"}");
                 if (quantidade != 1 && teclas != "\n" && teclas != "WAIT")
                 {
                     var temp = frm.Keybinds.Split(new string[] { "\n" }, StringSplitOptions.None);
@@ -183,8 +177,8 @@ namespace ProjetoC_.Cerebro
                     if (quantidade == 2)
                         lenghremove = (teclas + "\n").Length;
 
-                    if(frm.Keybinds!= "")
-                    frm.Keybinds = frm.Keybinds.Remove(frm.Keybinds.Length - (lenghremove), lenghremove) + $"{teclas} ({lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade})\n";
+                    if (frm.Keybinds != "")
+                        frm.Keybinds = frm.Keybinds.Remove(frm.Keybinds.Length - (lenghremove), lenghremove) + $"{teclas} ({lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade})\n";
                 }
                 else
                     frm.Keybinds += teclas.ToString() + "\n";
@@ -193,6 +187,9 @@ namespace ProjetoC_.Cerebro
             {
                 frm.Keybinds += "WAIT\n";
                 ChangeImageGamePad(Properties.Resources.directionalpad);
+                lstLastKeyBinds.Add(new Keybind { Quantidade = 1, Tecla = "WAIT" });
+                frm.Keybinds = frm.Keybinds.Replace("\n", Environment.NewLine);
+
             }
         }
 
