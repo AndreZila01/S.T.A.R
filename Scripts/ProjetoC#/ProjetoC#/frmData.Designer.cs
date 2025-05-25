@@ -60,6 +60,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(217)))), ((int)(((byte)(188)))));
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 402);
@@ -211,7 +212,7 @@
             // pnlPrincipal
             // 
             this.pnlPrincipal.AutoScroll = true;
-            this.pnlPrincipal.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlPrincipal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(196)))), ((int)(((byte)(151)))));
             this.pnlPrincipal.Controls.Add(this.panel2);
             this.pnlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPrincipal.Location = new System.Drawing.Point(0, 0);
@@ -267,6 +268,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pnlPrincipal);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmData";
             this.Text = "frmData";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmData_FormClosing);

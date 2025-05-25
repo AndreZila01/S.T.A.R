@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static ProjetoC_.Cerebro.Class;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ProjetoC_
@@ -54,7 +55,8 @@ namespace ProjetoC_
             //public float Temperatura 
             //public float Humidade 
             //public int Sound_sensor 
-            txtData.Text = "[{\"NumberPing\":1, \"UltraSonic_sensor\":0.5, \"Flame_sensor\":0, \"Temperatura\":0.2, \"Humidade\":0.7, \"Sound_sensor\":1},{\"NumberPing\":1, \"UltraSonic_sensor\":0.5, \"Flame_sensor\":0, \"Temperatura\":0.2, \"Humidade\":0.7, \"Sound_sensor\":1}]";
+            //txtData.Text = "[{\"NumberPing\":1, \"UltraSonic_sensor\":0.5, \"Flame_sensor\":0, \"Temperatura\":0.2, \"Humidade\":0.7, \"Sound_sensor\":1},{\"NumberPing\":1, \"UltraSonic_sensor\":0.5, \"Flame_sensor\":0, \"Temperatura\":0.2, \"Humidade\":0.7, \"Sound_sensor\":1}]";
+            txtData.Text = "[";
         }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -93,6 +95,7 @@ namespace ProjetoC_
             {
                 case "btnClear": // se o botão tiver o nome de btnClear
                     txtInput.Text = ""; Keybinds = ""; //apaga o txtInput text e keybinds
+                    _com_.SendDataMQQT("/test/", "WAIT");
                     break;
                 case "btnCopy": // se o botão tiver o nome de btnCopy
                     System.Windows.Forms.Clipboard.SetText(Keybinds); // copia toda a informação da keybinds para o sistema de Ctrl+V do Windows
@@ -139,9 +142,11 @@ namespace ProjetoC_
                     }
                     break;
                 case "btnIA": // se o botão tiver o nome de btnIA
-
+                    // um W é 30 cm 
+                    IAFunction();
                     break;
                 case "btnExport": // se o botão tiver o nome de btnExport
+                    txtData.Text = txtData.Text.Substring(0, txtData.Text.Length - 1) + "]";
                     new ExpImpData().ExcelData(txtData.Text.ToString()); // criamos uma ligação a class ExpImpData e exportamos os dados do txtData.Text para Excel.
                     break;
                 case "btnClearData": // se o botão tiver o nome de btnClearData
@@ -154,30 +159,37 @@ namespace ProjetoC_
                     _com_.StopMQQT(this.Tag.ToString());
                     break;
                 case "btnImport": // se o botão tiver o nome de btnImport
-                    OpenFileDialog ofds = new OpenFileDialog(); // criamos um objeto chamado OpenFileDialog, para o cliente selecionar algum ficheiro
-                    ofds.Filter = "Excel Files (*.xlsx)|*.xlsx|JSON Files (*.json)|*.json|Text Files (*.txt)|*.txt|Data Files (*.dat)|*.dat"; // aqui limitamos que seja só ficheiros do formato *.xslx, *.json, *.txt, *.dat
-                    ofds.Multiselect = false; // e não poderá selecionar varios tipos de ficheiros
-                    if ((ofds.ShowDialog() == DialogResult.OK) && (ofds.SafeFileName.Contains(".xlsx") || ofds.SafeFileName.Contains(".json") || ofds.SafeFileName.Contains(".txt") || ofds.SafeFileName.Contains(".dat"))) // se for tudo conforme acima e tiver selecionado um ficheiro com os formatos indicados acima! Prosegue se não, gameOver
+                    try
                     {
-                        string data = "";
-                        txtData.Text = "";
-                        //TODO: Testar caso o Sabino pense em criar um ficheiro pelo meio xlsx!
+                        OpenFileDialog ofds = new OpenFileDialog(); // criamos um objeto chamado OpenFileDialog, para o cliente selecionar algum ficheiro
+                        ofds.Filter = "Excel Files (*.xlsx)|*.xlsx|JSON Files (*.json)|*.json|Text Files (*.txt)|*.txt|Data Files (*.dat)|*.dat"; // aqui limitamos que seja só ficheiros do formato *.xslx, *.json, *.txt, *.dat
+                        ofds.Multiselect = false; // e não poderá selecionar varios tipos de ficheiros
+                        if ((ofds.ShowDialog() == DialogResult.OK) && (ofds.SafeFileName.Contains(".xlsx") || ofds.SafeFileName.Contains(".json") || ofds.SafeFileName.Contains(".txt") || ofds.SafeFileName.Contains(".dat"))) // se for tudo conforme acima e tiver selecionado um ficheiro com os formatos indicados acima! Prosegue se não, gameOver
+                        {
+                            string data = "";
+                            txtData.Text = "";
+                            //TODO: Testar caso o Sabino pense em criar um ficheiro pelo meio xlsx!
 
-                        if (ofds.SafeFileName.Contains(".xlsx")) // se o ficheiro chamar-se .xlsx
-                            data = new ExpImpData().ImportData(ofds.FileName, 0); // chamamos a classe ExpImpData e dizemos que é excel e o caminho é este!
-                        else if (ofds.SafeFileName.Contains(".json"))// se o ficheiro chamar-se .json
-                            data = new ExpImpData().ImportData(ofds.FileName, 1);// chamamos a classe ExpImpData e dizemos que é json e o caminho é este!
-                        else if (ofds.SafeFileName.Contains(".txt"))// se o ficheiro chamar-se .txt
-                            data = new ExpImpData().ImportData(ofds.FileName, 2);// chamamos a classe ExpImpData e dizemos que é txt e o caminho é este!
-                        else if (ofds.SafeFileName.Contains(".dat"))// se o ficheiro chamar-se .dat
-                            data = new ExpImpData().ImportData(ofds.FileName, 3);// chamamos a classe ExpImpData e dizemos que é protobuf e o caminho é este!
-                        
-                        if (data != "")
-                            txtData.Text = data; // caso o texto dos ficheiros for como queremos enviamos para o TxtData.Text
+                            if (ofds.SafeFileName.Contains(".xlsx")) // se o ficheiro chamar-se .xlsx
+                                data = new ExpImpData().ImportData(ofds.FileName, 0); // chamamos a classe ExpImpData e dizemos que é excel e o caminho é este!
+                            else if (ofds.SafeFileName.Contains(".json"))// se o ficheiro chamar-se .json
+                                data = new ExpImpData().ImportData(ofds.FileName, 1);// chamamos a classe ExpImpData e dizemos que é json e o caminho é este!
+                            else if (ofds.SafeFileName.Contains(".txt"))// se o ficheiro chamar-se .txt
+                                data = new ExpImpData().ImportData(ofds.FileName, 2);// chamamos a classe ExpImpData e dizemos que é txt e o caminho é este!
+                            else if (ofds.SafeFileName.Contains(".dat"))// se o ficheiro chamar-se .dat
+                                data = new ExpImpData().ImportData(ofds.FileName, 3);// chamamos a classe ExpImpData e dizemos que é protobuf e o caminho é este!
+
+                            if (data != "")
+                                txtData.Text = data; // caso o texto dos ficheiros for como queremos enviamos para o TxtData.Text
+                        }
+                        else
+                        {
+                            //MessageBox.Show("", "");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        //MessageBox.Show("", "");
+                        MessageBox.Show("" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
                 case "btnForm": // se o botão tiver o nome de btnCopy
@@ -187,7 +199,8 @@ namespace ProjetoC_
                     var asasas = Path.GetTempPath(); //localtemp %temp%
                     var asa = Environment.CurrentDirectory; //localpath
                     var asas = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData); //%appdata%
-                    (new Comunicacao()).CollectDataMQQT("", "TESTO");
+                    (new Comunicacao()).SendDataMQQT("", "TESTO");
+                    _com_.SendDataMQQT("/test/", "WAIT");
                     break;
             }
         }
@@ -206,27 +219,35 @@ namespace ProjetoC_
 
         private void ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            switch (((System.Windows.Forms.ToolStripMenuItem)sender).Tag) // Crias um ToolStripMMenuItem local e envias os dados para o sender e pegas no Tag
+            try
             {
-                case "0": // se o tag for 0, entras
-                    new ExpImpData().ProtobufData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função ProtobufData e envias os dados da txtData.Text para exportar! 
-                    //Protobuf
-                    break;
-                case "1":  // se o tag for 1, entras
-                    new ExpImpData().JSONData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função JSONData e envias os dados da txtData.Text para exportar!
-                    //JSON
-                    break;
-                case "2":  // se o tag for 2, entras
-                    new ExpImpData().ExcelData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função ExcelData e envias os dados da txtData.Text para exportar!
-                    //Excel
-                    break;
-                case "3":  // se o tag for 3, entras
-                    new ExpImpData().TXTData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função TXTData e envias os dados da txtData.Text para exportar!
-                    //Txt
-                    break;
-                default: // caso contrario entras aqui!
-                    //Erro ou bug
-                    break;
+                txtData.Text = txtData.Text.Substring(0, txtData.Text.Length - 1) + "]";
+                switch (((System.Windows.Forms.ToolStripMenuItem)sender).Tag) // Crias um ToolStripMMenuItem local e envias os dados para o sender e pegas no Tag
+                {
+                    case "0": // se o tag for 0, entras
+                        new ExpImpData().ProtobufData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função ProtobufData e envias os dados da txtData.Text para exportar! 
+                                                                                //Protobuf
+                        break;
+                    case "1":  // se o tag for 1, entras
+                        new ExpImpData().JSONData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função JSONData e envias os dados da txtData.Text para exportar!
+                                                                            //JSON
+                        break;
+                    case "2":  // se o tag for 2, entras
+                        new ExpImpData().ExcelData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função ExcelData e envias os dados da txtData.Text para exportar!
+                                                                             //Excel
+                        break;
+                    case "3":  // se o tag for 3, entras
+                        new ExpImpData().TXTData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função TXTData e envias os dados da txtData.Text para exportar!
+                                                                           //Txt
+                        break;
+                    default: // caso contrario entras aqui!
+                             //Erro ou bug
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -238,7 +259,43 @@ namespace ProjetoC_
         private void label1_Click(object sender, EventArgs e)
         {
             string texto = (Interaction.InputBox("", "Texto")).Replace(" ", ""); // teste!
-            _com_.CollectDataMQQT("/test/", texto);
+            _com_.SendDataMQQT("/test/", texto);
+        }
+
+        public void ChangeMovement_Arduino(string keybind)
+        {
+            _com_.SendDataMQQT("/test/", keybind);
+        }
+
+        private void IAFunction()
+        {
+            _com_.SendDataMQQT("/test/", "W");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "A");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "W");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "D");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "D");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "W");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "A");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "W");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "A");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "W");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "D");
+            Thread.Sleep(200);
+            for (int i = 0; i < 15; i++)
+            {
+                _com_.SendDataMQQT("/test/", "W");
+                Thread.Sleep(200);
+            }
         }
 
         /*

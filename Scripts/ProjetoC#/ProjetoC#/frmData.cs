@@ -30,6 +30,7 @@ namespace ProjetoC_
 
         private void Tmr_Tick(object sender, EventArgs e)
         {
+            //frm.Tag = ""; PEGAR VALOR EM frm.Tag!
             CreatePnl("100", "520", "4555", "6000", "adad", "123123"); // cada segundo cria os objetos e manda para o pnlPrincipal
             pnlPrincipal.AutoScrollPosition = new Point(0, pnlPrincipal.VerticalScroll.Maximum); // faz autoscroll com base na posição atal
         }
