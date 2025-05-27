@@ -57,6 +57,12 @@ namespace ProjetoC_.Cerebro
 
         private void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
+            //D_62 S_64 T_24 H_51 F_F
+            //D em cm
+            //S em Hz
+            //T em Celsius
+            //H em %
+            //F em boolean
             string data = "" + System.Text.Encoding.Default.GetString(e.Message); // converte a mensagem de Binario para Texto em string
             Console.WriteLine("message=" + data);
             switch (data)
@@ -66,8 +72,8 @@ namespace ProjetoC_.Cerebro
                     frm.pctIPV4.Tag = "1"; // e altera a sua tag, para sabermos que está ligado
                     break;
                 case string a when a.Contains("Data"): // se a informação contiver Data
-                    string values = a.Split(new string[] { "Data" }, StringSplitOptions.None)[1]; // separas o texto todo, em "Data", metendo em string, graças ao [1]
-                    frm.txtData.Text += "{\"NumberPing\":\"" + values + ",\"UltraSonic_sensor\":\"" + values + ",\"Flame_sensor\":\"" + values + ",\"Temperatura\":\"" + values + ",\"Humidade\":\"" + values + ",\"Sound_sensor\":\"" + values + "},"; // formatar em json!
+                    string values = a.Split(new string[] { "_" }, StringSplitOptions.None)[1]; // separas o texto todo, em "Data", metendo em string, graças ao [1]
+                    frm.txtData.Text += "{\"NumberPing\":\"" + values[1] + ",\"UltraSonic_sensor\":\"" + values + ",\"Flame_sensor\":\"" + values + ",\"Temperatura\":\"" + values + ",\"Humidade\":\"" + values + ",\"Sound_sensor\":\"" + values + "},"; // formatar em json!
                     frm.txtData.Tag = "{\"NumberPing\":\"" + values + ",\"UltraSonic_sensor\":\"" + values + ",\"Flame_sensor\":\"" + values + ",\"Temperatura\":\"" + values + ",\"Humidade\":\"" + values + ",\"Sound_sensor\":\"" + values + "},";
                     //TODO: Acabar e discutir o melhor metodo de ler e enviar dados!
                     frm.dataArduino = ""; //?

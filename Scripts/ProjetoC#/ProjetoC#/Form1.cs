@@ -151,12 +151,16 @@ namespace ProjetoC_
                     break;
                 case "btnClearData": // se o botão tiver o nome de btnClearData
                     lblFlame.Text = Properties.Resources.StringFlameSensor; lblHumidade.Text = Properties.Resources.StringHumidity; lblTemp.Text = Properties.Resources.StringTemperature; lblUSonic.Text = Properties.Resources.StringUltraSonicSensor; lblSound.Text = Properties.Resources.StringSound; txtData.Text = "";
+                    _com_.SendDataMQQT("/test/", "WAIT"); // envia o WAIT para o MQTT Broker, para parar de receber dados do Arduino
                     //Apagar a informação da DashBoard
                     break;
                 case "btnOffArd": // se o botão tiver o nome de btnOffArd
                     btnOnArd.Enabled = true; // ativa o botão de ligar ao arduino
                     btnOffArd.Enabled = false; // desliga o botão de desligar ao arduino
                     _com_.StopMQQT(this.Tag.ToString());
+
+                    pctIPV4.Image = Properties.Resources.Off; // muda a fotografia do pctIpv4 que está no Form1 para On
+                    pctIPV4.Tag = ""; // e altera a sua tag, para sabermos que está ligado
                     break;
                 case "btnImport": // se o botão tiver o nome de btnImport
                     try
@@ -271,17 +275,17 @@ namespace ProjetoC_
         {
             _com_.SendDataMQQT("/test/", "W");
             Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "A");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "D");
-            Thread.Sleep(200);
             _com_.SendDataMQQT("/test/", "D");
             Thread.Sleep(200);
             _com_.SendDataMQQT("/test/", "W");
             Thread.Sleep(200);
             _com_.SendDataMQQT("/test/", "A");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "A");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "W");
+            Thread.Sleep(200);
+            _com_.SendDataMQQT("/test/", "D");
             Thread.Sleep(200);
             _com_.SendDataMQQT("/test/", "W");
             Thread.Sleep(200);
