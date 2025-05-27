@@ -16,7 +16,7 @@ bool motor_direito_tras_direction = true;
 
 Motor motor_esquerda_frente(27, 14);
 bool motor_esquerdo_frente_direction = true;
-Motor motor_esquerda_tras(13, 12);
+Motor motor_esquerda_tras(27, 14);
 bool motor_esquerdo_tras_direction = true;
 
 // // //mudar os pinos
