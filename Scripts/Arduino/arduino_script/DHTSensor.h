@@ -11,8 +11,8 @@ class DHTSensor {
   public:
     DHTSensor(uint8_t dht_pin);
     void begin();
-    float readTemperature();
-    float readHumidity();
+    int readTemperature();
+    int readHumidity();
 };
 
 #endif

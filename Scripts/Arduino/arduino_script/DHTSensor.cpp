@@ -8,10 +8,10 @@ void DHTSensor::begin() {
   dht.begin();
 }
 
-float DHTSensor::readTemperature() {
-  return dht.readTemperature();
+int DHTSensor::readTemperature() {
+  return static_cast<int>(dht.readTemperature());  // Cast para int
 }
 
-float DHTSensor::readHumidity() {
-  return dht.readHumidity();
+int DHTSensor::readHumidity() {
+  return static_cast<int>(dht.readHumidity());     // Cast para int
 }

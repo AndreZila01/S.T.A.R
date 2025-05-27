@@ -22,7 +22,7 @@ bool motor_esquerdo_tras_direction = true;
 // // //mudar os pinos
 // Buzzer buzzer(9); // Buzzer no pino 9
   AnalogSensor soundSensor(34);
-// DHTSensor dhtSensor(5); 
+  DHTSensor dhtSensor(32); 
   FlameSensor flame(35);  
   UltrasonicSensor ultrasonicsensor(21, 19);
 
@@ -34,7 +34,7 @@ bool motor_esquerdo_tras_direction = true;
 
 const char* ssid = "Visitors";
 const char* password = "";
-const char* mqtt_server = "10.36.243.198";
+const char* mqtt_server = "10.36.246.171";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -92,7 +92,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
 }
 
-
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
@@ -130,7 +129,7 @@ void setup() {
   //sensores
   ultrasonicsensor.begin();
   flame.begin();
-  // dhtSensor.begin();
+  dhtSensor.begin();
   soundSensor.begin();
   // buzzer.begin();
 
@@ -200,41 +199,17 @@ void loop() {
   if (now - lastMsg > 2000) {
     lastMsg = now;
     ++value;
+     int som = soundSensor.readValue();  // Faz a leitura do sensor
+     int distancia = ultrasonicsensor.getDistance();  // Faz a leitura do sensor
+     char fogo = flame.checkFlame();
+     int temperatura =dhtSensor.readTemperature();
+     int humidade = dhtSensor.readHumidity();
 
-    //mandar ultrasonic_data:    
-    int distancia = ultrasonicsensor.getDistance();  // Faz a leitura do sensor
-    snprintf(msg, MSG_BUFFER_SIZE, "D_%.d", distancia);
-    Serial.print("Publicando: ");
-    Serial.println(msg);
-    client.publish("/test/", msg);
-    
-    //mandar temperatura:
-
-    // snprintf (msg, MSG_BUFFER_SIZE, "hello world #%ld", value);
-    // Serial.print("Publish message: ");
-    // Serial.println(msg);
-    // client.publish("/test/", msg);
-
-    //mandar se há fogo:
-    int fogo = flame.checkFlame();
-      if(fogo == 1){
-          snprintf (msg, MSG_BUFFER_SIZE, "F_T");
-          Serial.print("Publish message: há fogo!!");
+      //mandar dados de todos os sensores:
+          snprintf(msg, MSG_BUFFER_SIZE, "D_%.d S_%.d T_%.d H_%.d F_%c", distancia,som, temperatura, humidade, fogo);
+          Serial.print("Publicando: ");
           Serial.println(msg);
           client.publish("/test/", msg);
-      }
-      else{
-          snprintf (msg, MSG_BUFFER_SIZE, "F_F");
-          Serial.print("Publish message: Não há fogo!");
-          Serial.println(msg);
-          client.publish("/test/", msg);
-      }
+        }
 
-    //mandar sensor de som:
-    int som = soundSensor.readValue();  // Faz a leitura do sensor
-    snprintf(msg, MSG_BUFFER_SIZE, "S_%.d", som);
-    Serial.print("Publicando: ");
-    Serial.println(msg);
-    client.publish("/test/", msg);
-  }
 }

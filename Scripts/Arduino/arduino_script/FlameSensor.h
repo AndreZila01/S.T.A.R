@@ -8,7 +8,7 @@ class FlameSensor {
   public:
     FlameSensor(int sensor);
     void begin();
-    int checkFlame();
+    char checkFlame();
 };
 
 #endif

@@ -1,20 +1,19 @@
 #include "FlameSensor.h"
 #include <Arduino.h>
 
-FlameSensor::FlameSensor(int sensor, int led) {
+FlameSensor::FlameSensor(int sensor) {
   sensorPin = sensor;
-  ledPin = led;
 }
 
 void FlameSensor::begin() {
   pinMode(sensorPin, INPUT);
 }
 
-int FlameSensor::checkFlame() {
+char FlameSensor::checkFlame() {
   int flameDetected = digitalRead(sensorPin);
   if (flameDetected == HIGH) {
-    return 1;
+    return 'T';
   } else {
-    return 0;
+    return 'F';
   }
 }
