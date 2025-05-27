@@ -73,8 +73,9 @@ namespace ProjetoC_.Cerebro
                     break;
                 case string a when a.Contains("Data"): // se a informação contiver Data
                     string values = a.Split(new string[] { "_" }, StringSplitOptions.None)[1]; // separas o texto todo, em "Data", metendo em string, graças ao [1]
-                    frm.txtData.Text += "{\"NumberPing\":\"" + values[1] + ",\"UltraSonic_sensor\":\"" + values + ",\"Flame_sensor\":\"" + values + ",\"Temperatura\":\"" + values + ",\"Humidade\":\"" + values + ",\"Sound_sensor\":\"" + values + "},"; // formatar em json!
-                    frm.txtData.Tag = "{\"NumberPing\":\"" + values + ",\"UltraSonic_sensor\":\"" + values + ",\"Flame_sensor\":\"" + values + ",\"Temperatura\":\"" + values + ",\"Humidade\":\"" + values + ",\"Sound_sensor\":\"" + values + "},";
+                    values = "{\"NumberPing\":\"" + values[1] + ",\"UltraSonic_sensor\":\"" + values[3] + ",\"Flame_sensor\":\"" + values[5] + ",\"Temperatura\":\"" + values[7] + ",\"Humidade\":\"" + values[9] + ",\"Sound_sensor\":\"" + values[11] + "},";
+                    frm.txtData.Text += values; // formatar em json!
+                    frm.txtData.Tag = values;
                     //TODO: Acabar e discutir o melhor metodo de ler e enviar dados!
                     frm.dataArduino = ""; //?
                     break;
