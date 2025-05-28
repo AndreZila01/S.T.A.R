@@ -12,6 +12,7 @@ using System.Net;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -49,13 +50,6 @@ namespace ProjetoC_
             if (!bgwStart.IsBusy) // verifica se o backgroundworker está a correr
                 bgwStart.RunWorkerAsync(); // inicia o backgroundworker, executando primeiro o DoWork e depois o DoWorkRunWorkerAsync 
 
-            //    public int NumberPing
-            //public float UltraSonic_sensor 
-            //public int Flame_sensor 
-            //public float Temperatura 
-            //public float Humidade 
-            //public int Sound_sensor 
-            //txtData.Text = "[{\"NumberPing\":1, \"UltraSonic_sensor\":0.5, \"Flame_sensor\":0, \"Temperatura\":0.2, \"Humidade\":0.7, \"Sound_sensor\":1},{\"NumberPing\":1, \"UltraSonic_sensor\":0.5, \"Flame_sensor\":0, \"Temperatura\":0.2, \"Humidade\":0.7, \"Sound_sensor\":1}]";
             txtData.Text = "[";
         }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -87,6 +81,23 @@ namespace ProjetoC_
                 txtInput.SelectionStart = txtInput.Text.Length; // mete a progressbar no ultimo caracter para o textbox ficar em baixo
                 txtInput.ScrollToCaret();
             }
+            if(dataArduino != "")
+            {
+
+                //TODO: Acabar e discutir o melhor metodo de ler e enviar dados!
+
+                string[] values = dataArduino.Split(new string[] { "_" }, StringSplitOptions.None).ToArray(); // separas o texto todo, em "Data", metendo em string, graças ao [1]
+                txtData.Tag = dataArduino;
+                dataArduino = "";
+                string data = "{\"UltraSonic_sensor\":" + values[1].Replace(" S", "") + ",\"Flame_sensor\":\"" + values[5] + "\",\"Temperatura\":" + values[3].Replace("H", "") + ",\"Humidade\":" + values[4].Replace(" F", "") + ",\"Sound_sensor\":" + values[2].Replace(" T", "") + "},";
+                lblFlame.Text = Properties.Resources.StringFlameSensor +"" + values[5]; 
+                lblHumidade.Text = Properties.Resources.StringHumidity + "" + values[4].Replace(" F", ""); 
+                lblTemp.Text = Properties.Resources.StringTemperature + "" + values[3].Replace("H", ""); 
+                lblUSonic.Text = Properties.Resources.StringUltraSonicSensor + "" + values[1].Replace(" S", ""); 
+                lblSound.Text = Properties.Resources.StringSound + "" + values[2].Replace(" T", "");
+
+                txtData.Text += data; // formatar em json!
+            } 
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -151,6 +162,7 @@ namespace ProjetoC_
                     break;
                 case "btnClearData": // se o botão tiver o nome de btnClearData
                     lblFlame.Text = Properties.Resources.StringFlameSensor; lblHumidade.Text = Properties.Resources.StringHumidity; lblTemp.Text = Properties.Resources.StringTemperature; lblUSonic.Text = Properties.Resources.StringUltraSonicSensor; lblSound.Text = Properties.Resources.StringSound; txtData.Text = "";
+                    Keybinds = "";
                     _com_.SendDataMQQT("/test/", "WAIT"); // envia o WAIT para o MQTT Broker, para parar de receber dados do Arduino
                     //Apagar a informação da DashBoard
                     break;
@@ -271,35 +283,46 @@ namespace ProjetoC_
             _com_.SendDataMQQT("/test/", keybind);
         }
 
-        private void IAFunction()
+        private void Move(int quantidade, string tecla)
         {
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "D");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "A");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "A");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "D");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "A");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "D");
-            Thread.Sleep(200);
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < quantidade; i++)
             {
-                _com_.SendDataMQQT("/test/", "W");
+                _com_.SendDataMQQT("/test/", tecla);
                 Thread.Sleep(200);
             }
+        }
+
+        private void IAFunction()
+        {
+            /*Inicio Barreira*/
+            Thread.Sleep(200);
+            Move(2,"W");
+            Thread.Sleep(200);
+            Move(2,"A");
+            Thread.Sleep(200);
+            Move(1,"W");
+            Thread.Sleep(200);
+            Move(2,"D");
+            Thread.Sleep(200);
+            Move(1,"W");
+            Thread.Sleep(200);
+            //ULTRAPASSOU A BARREIRA
+            Move(1, "D");
+            Thread.Sleep(200);
+            Move(1, "W");
+            //PASSOU BARREIRA E COMEÇA AS LOMBAS
+            Thread.Sleep(200);
+            Move(1,"A");
+            Thread.Sleep(200);
+            Move(1,"W");
+            Thread.Sleep(200);
+            //COMEÇO DAS LOMBAS
+            Move(4,"W");
+            Thread.Sleep(200);
+            //FIM DAS LOMBAS E COMEÇO RAMPA
+            Move(6, "W");
+            Thread.Sleep(200);
+
         }
 
         /*

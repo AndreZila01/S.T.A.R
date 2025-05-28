@@ -40,7 +40,7 @@ namespace ProjetoC_.Cerebro
             int l = 0;
             foreach (DataArduino dataArd in lst)//for (int l = 0; l < lst.Count(); l++)
             {
-                xlWorkSheet.Cells[2 + l, 1] = dataArd.NumberPing;
+                xlWorkSheet.Cells[2 + l, 1] = l;
                 xlWorkSheet.Cells[2 + l, 2] = dataArd.UltraSonic_sensor;
                 xlWorkSheet.Cells[2 + l, 3] = dataArd.Flame_sensor;
                 xlWorkSheet.Cells[2 + l, 4] = dataArd.Temperatura;
@@ -68,8 +68,9 @@ namespace ProjetoC_.Cerebro
         {
             List<DataArduino> lst = JsonConvert.DeserializeObject<List<DataArduino>>(data);
             string info = "";
+            int a = 0;
             foreach (DataArduino dataArd in lst)
-                info += $"{Properties.Resources.StringData}{dataArd.NumberPing}; {Properties.Resources.StringUltraSonicSensor}{dataArd.UltraSonic_sensor}; {Properties.Resources.StringFlameSensor}{dataArd.Flame_sensor};{Properties.Resources.StringTemperature}{dataArd.Temperatura};{Properties.Resources.StringHumidity}{dataArd.Humidade};{Properties.Resources.StringSound}{dataArd.Sound_sensor} \n";
+                info += $"{Properties.Resources.StringData}{info.Split(new string[] {"\n"}, StringSplitOptions.None).Length}; {Properties.Resources.StringUltraSonicSensor}{dataArd.UltraSonic_sensor}; {Properties.Resources.StringFlameSensor}{dataArd.Flame_sensor};{Properties.Resources.StringTemperature}{dataArd.Temperatura};{Properties.Resources.StringHumidity}{dataArd.Humidade};{Properties.Resources.StringSound}{dataArd.Sound_sensor} \n";
             File.WriteAllText(tempPath + "\\outputData.txt", info);
         }
 
@@ -86,7 +87,7 @@ namespace ProjetoC_.Cerebro
             List<DataArduinoProto> lst = JsonConvert.DeserializeObject<List<DataArduinoProto>>(data);
             foreach (var item in lst)
             {
-                dt.Rows.Add(item.NumberPing, item.UltraSonic_sensor, item.Flame_sensor,
+                dt.Rows.Add(dt.Rows.Count, item.UltraSonic_sensor, item.Flame_sensor,
                             item.Temperatura, item.Humidade, item.Sound_sensor);
             }
 
