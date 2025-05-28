@@ -78,10 +78,10 @@ namespace ProjetoC_.Cerebro
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("Ping", typeof(int));
-            dt.Columns.Add("Ultrasonic", typeof(float));
-            dt.Columns.Add("Flame", typeof(int));
-            dt.Columns.Add("Temp", typeof(float));
-            dt.Columns.Add("Humidity", typeof(float));
+            dt.Columns.Add("Ultrasonic", typeof(int));
+            dt.Columns.Add("Flame", typeof(string));
+            dt.Columns.Add("Temp", typeof(int));
+            dt.Columns.Add("Humidity", typeof(int));
             dt.Columns.Add("Sound", typeof(int));
 
             List<DataArduinoProto> lst = JsonConvert.DeserializeObject<List<DataArduinoProto>>(data);
@@ -89,13 +89,6 @@ namespace ProjetoC_.Cerebro
             {
                 dt.Rows.Add(dt.Rows.Count, item.UltraSonic_sensor, item.Flame_sensor,
                             item.Temperatura, item.Humidade, item.Sound_sensor);
-            }
-
-            byte[] bytes;
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                Serializer.Serialize(memoryStream, lst);
-                bytes = memoryStream.ToArray();
             }
 
             using (var fs = File.OpenWrite(tempPath + "\\outputData.dat"))
@@ -151,7 +144,7 @@ namespace ProjetoC_.Cerebro
                 string sound = xlWorkSheet.Cells[row, 6].Value2.ToString();
 
                 //sb.AppendLine($"{data},{ultrasonic},{flame},{temperatura},{humidade},{sound}");
-                texto = "{\"NumberPing\":\"" + data + ",\"UltraSonic_sensor\":\"" + ultrasonic + ",\"Flame_sensor\":\"" + flame + ",\"Temperatura\":\"" + temperatura + ",\"Humidade\":\"" + humidade + ",\"Sound_sensor\":\"" + sound + "},";
+                texto += "{\"NumberPing\":\"" + data + ",\"UltraSonic_sensor\":\"" + ultrasonic + ",\"Flame_sensor\":\"" + flame + ",\"Temperatura\":\"" + temperatura + ",\"Humidade\":\"" + humidade + ",\"Sound_sensor\":\"" + sound + "},";
                 row++;
             }
 

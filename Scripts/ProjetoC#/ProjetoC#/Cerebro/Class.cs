@@ -29,19 +29,19 @@ namespace ProjetoC_.Cerebro
             /// <summary>
             /// Valor do ultrasonic! Valor em centimetros!
             /// </summary>
-			public float UltraSonic_sensor { get; set; }
+			public int UltraSonic_sensor { get; set; }
             /// <summary>
-            /// Valor do FlameSensor em inteiro!
+            /// Boolean em string do FlameSensor!
             /// </summary>
-			public int Flame_sensor { get; set; }
+			public string Flame_sensor { get; set; }
             /// <summary>
             /// Valor da temperatura em ºC
             /// </summary>
-			public float Temperatura { get; set; }
+			public int Temperatura { get; set; }
             /// <summary>
             /// Valor da Humidade em %
             /// </summary>
-			public float Humidade { get; set; }
+			public int Humidade { get; set; }
             /// <summary>
             /// Valor do som em HZ.
             /// </summary>
@@ -53,13 +53,13 @@ namespace ProjetoC_.Cerebro
             [ProtoMember(1)]
             public int NumberPing { get; set; }
             [ProtoMember(2)]
-            public float UltraSonic_sensor { get; set; }
+            public int UltraSonic_sensor { get; set; }
             [ProtoMember(3)]
-            public int Flame_sensor { get; set; }
+            public string Flame_sensor { get; set; }
             [ProtoMember(4)]
-            public float Temperatura { get; set; }
+            public int Temperatura { get; set; }
             [ProtoMember(5)]
-            public float Humidade { get; set; }
+            public int Humidade { get; set; }
             [ProtoMember(6)]
             public int Sound_sensor { get; set; }
         }

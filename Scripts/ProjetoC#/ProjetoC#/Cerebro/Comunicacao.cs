@@ -75,7 +75,6 @@ namespace ProjetoC_.Cerebro
                     frm.pctIPV4.Tag = "1"; // e altera a sua tag, para sabermos que está ligado
                     break;
                 case string a when a.Contains("D_") && a.Contains("S_"): // se a informação contiver Data
-
                     frm.dataArduino = System.Text.Encoding.Default.GetString(e.Message);
                     break;
                 default:

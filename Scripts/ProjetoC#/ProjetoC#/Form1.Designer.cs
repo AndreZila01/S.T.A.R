@@ -407,14 +407,14 @@
             // 
             this.btnInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInput.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
+            this.btnInput.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
             this.btnInput.Location = new System.Drawing.Point(197, 357);
             this.btnInput.Name = "btnInput";
             this.btnInput.Size = new System.Drawing.Size(70, 23);
             this.btnInput.TabIndex = 4;
             this.btnInput.TabStop = false;
             this.btnInput.Tag = "";
-            this.btnInput.Text = "Input ON";
+            this.btnInput.Text = "Input OFF";
             this.btnInput.UseVisualStyleBackColor = true;
             this.btnInput.Click += new System.EventHandler(this.button_Click);
             // 

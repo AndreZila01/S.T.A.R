@@ -157,8 +157,10 @@ namespace ProjetoC_
                     IAFunction();
                     break;
                 case "btnExport": // se o botão tiver o nome de btnExport
-                    txtData.Text = txtData.Text.Substring(0, txtData.Text.Length - 1) + "]";
-                    new ExpImpData().ExcelData(txtData.Text.ToString()); // criamos uma ligação a class ExpImpData e exportamos os dados do txtData.Text para Excel.
+                    if (txtData.Text[txtData.Text.Length - 1] == ',')
+                        new ExpImpData().ExcelData(txtData.Text.Substring(0, txtData.Text.Length - 1) + "]");
+                    else
+                        new ExpImpData().ExcelData(txtData.Text + "]"); // criamos uma ligação a class ExpImpData e exportamos os dados do txtData.Text para Excel.
                     break;
                 case "btnClearData": // se o botão tiver o nome de btnClearData
                     lblFlame.Text = Properties.Resources.StringFlameSensor; lblHumidade.Text = Properties.Resources.StringHumidity; lblTemp.Text = Properties.Resources.StringTemperature; lblUSonic.Text = Properties.Resources.StringUltraSonicSensor; lblSound.Text = Properties.Resources.StringSound; txtData.Text = "";
@@ -237,23 +239,24 @@ namespace ProjetoC_
         {
             try
             {
-                txtData.Text = txtData.Text.Substring(0, txtData.Text.Length - 1) + "]";
+                if (txtData.Text[txtData.Text.Length-1] == ',')
+                    txtData.Text = txtData.Text.Substring(0, txtData.Text.Length - 1);
                 switch (((System.Windows.Forms.ToolStripMenuItem)sender).Tag) // Crias um ToolStripMMenuItem local e envias os dados para o sender e pegas no Tag
                 {
                     case "0": // se o tag for 0, entras
-                        new ExpImpData().ProtobufData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função ProtobufData e envias os dados da txtData.Text para exportar! 
+                        new ExpImpData().ProtobufData(txtData.Text.ToString() + "]"); // Crias localmente a class ExpImpData da função ProtobufData e envias os dados da txtData.Text para exportar! 
                                                                                 //Protobuf
                         break;
                     case "1":  // se o tag for 1, entras
-                        new ExpImpData().JSONData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função JSONData e envias os dados da txtData.Text para exportar!
+                        new ExpImpData().JSONData(txtData.Text.ToString() + "]"); // Crias localmente a class ExpImpData da função JSONData e envias os dados da txtData.Text para exportar!
                                                                             //JSON
                         break;
                     case "2":  // se o tag for 2, entras
-                        new ExpImpData().ExcelData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função ExcelData e envias os dados da txtData.Text para exportar!
+                        new ExpImpData().ExcelData(txtData.Text.ToString() + "]"); // Crias localmente a class ExpImpData da função ExcelData e envias os dados da txtData.Text para exportar!
                                                                              //Excel
                         break;
                     case "3":  // se o tag for 3, entras
-                        new ExpImpData().TXTData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função TXTData e envias os dados da txtData.Text para exportar!
+                        new ExpImpData().TXTData(txtData.Text.ToString() + "]"); // Crias localmente a class ExpImpData da função TXTData e envias os dados da txtData.Text para exportar!
                                                                            //Txt
                         break;
                     default: // caso contrario entras aqui!
