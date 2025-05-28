@@ -414,7 +414,7 @@
             this.btnInput.TabIndex = 4;
             this.btnInput.TabStop = false;
             this.btnInput.Tag = "";
-            this.btnInput.Text = "Input OFF";
+            this.btnInput.Text = "Input ON";
             this.btnInput.UseVisualStyleBackColor = true;
             this.btnInput.Click += new System.EventHandler(this.button_Click);
             // 

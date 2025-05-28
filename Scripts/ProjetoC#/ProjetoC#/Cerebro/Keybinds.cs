@@ -100,97 +100,98 @@ namespace ProjetoC_.Cerebro
 
         public static void ChangeDirectionalPad()
         {
-            if (teclasPressionadas.Count > 0 && frm.btnInput.Text.Contains("ON"))
-            {
-                string teclas = "";
-                //if (teclasPressionadas.Count() == 2)
-                //    teclas = $"{teclasPressionadas.ToArray()[0]}{teclasPressionadas.ToArray()[1]}";
-                //else
-                teclas = $"{teclasPressionadas.ToArray()[0]}";
-
-                if (lstLastKeyBinds.Count() != 0)
+            if (frm.btnInput.Text.Contains("ON"))
+                if (teclasPressionadas.Count > 0)
                 {
-                    if (lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Tecla == teclas)
-                        lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade++;
+                    string teclas = "";
+                    //if (teclasPressionadas.Count() == 2)
+                    //    teclas = $"{teclasPressionadas.ToArray()[0]}{teclasPressionadas.ToArray()[1]}";
+                    //else
+                    teclas = $"{teclasPressionadas.ToArray()[0]}";
+
+                    if (lstLastKeyBinds.Count() != 0)
+                    {
+                        if (lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Tecla == teclas)
+                            lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade++;
+                        else
+                            lstLastKeyBinds.Add(new Keybind { Tecla = teclas, Quantidade = 1 });
+                    }
                     else
                         lstLastKeyBinds.Add(new Keybind { Tecla = teclas, Quantidade = 1 });
+
+                    int quantidade = lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade;
+
+                    Console.WriteLine($"{quantidade} != 1 && {teclas} != \\n && {teclas} != WAIT");
+
+
+                    frm.ChangeMovement_Arduino(teclas);
+
+                    switch (teclas)
+                    {
+                        case "WD":
+                        case "DW":
+                            ChangeImageGamePad(Properties.Resources.DirectionalPad_CD);
+                            break;
+                        case "WA":
+                        case "AW":
+                            ChangeImageGamePad(Properties.Resources.DirectionalPad_CE);
+                            break;
+                        case "AS":
+                        case "SA":
+                            ChangeImageGamePad(Properties.Resources.DirectionalPad_BE);
+                            break;
+                        case "SD":
+                        case "DS":
+                            ChangeImageGamePad(Properties.Resources.DirectionalPad_BD);
+                            break;
+                        case "A":
+                            ChangeImageGamePad(Properties.Resources.DirectionalPad_E);
+                            break;
+                        case "D":
+                            ChangeImageGamePad(Properties.Resources.DirectionalPad_D);
+                            break;
+                        case "S":
+                            ChangeImageGamePad(Properties.Resources.DirectionalPad_B);
+                            break;
+                        case "W":
+                            ChangeImageGamePad(Properties.Resources.DirectionalPad_C);
+                            break;
+                    }
+
+                    //if(lstLastKeyBinds.Count()>2)
+                    //if (lstLastKeyBinds[lstLastKeyBinds.Count() - 2].Tecla == "WAIT")
+                    //    teclas = "\n";
+
+                    Console.WriteLine($"{quantidade} != 1 && {teclas} != \"\\n\" && {teclas} != \"WAIT\" - {quantidade != 1 && teclas != "\n" && teclas != "WAIT"}");
+                    if (quantidade != 1 && teclas != "\n" && teclas != "WAIT")
+                    {
+                        var temp = frm.Keybinds.Split(new string[] { "\n" }, StringSplitOptions.None);
+
+                        if (quantidade % 10 == 0)
+                            quantidade--;
+
+                        int lenghremove = ($"\n ({quantidade})").Length + 1;
+
+                        if (teclas.Length == 2 && quantidade > 1)
+                            lenghremove++;
+
+                        if (quantidade == 2)
+                            lenghremove = (teclas + "\n").Length;
+
+                        if (frm.Keybinds != "")
+                            frm.Keybinds = frm.Keybinds.Remove(frm.Keybinds.Length - (lenghremove), lenghremove) + $"{teclas} ({lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade})\n";
+                    }
+                    else
+                        frm.Keybinds += teclas.ToString() + "\n";
                 }
                 else
-                    lstLastKeyBinds.Add(new Keybind { Tecla = teclas, Quantidade = 1 });
-
-                int quantidade = lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade;
-
-                Console.WriteLine($"{quantidade} != 1 && {teclas} != \\n && {teclas} != WAIT");
-
-
-                frm.ChangeMovement_Arduino(teclas);
-
-                switch (teclas)
                 {
-                    case "WD":
-                    case "DW":
-                        ChangeImageGamePad(Properties.Resources.DirectionalPad_CD);
-                        break;
-                    case "WA":
-                    case "AW":
-                        ChangeImageGamePad(Properties.Resources.DirectionalPad_CE);
-                        break;
-                    case "AS":
-                    case "SA":
-                        ChangeImageGamePad(Properties.Resources.DirectionalPad_BE);
-                        break;
-                    case "SD":
-                    case "DS":
-                        ChangeImageGamePad(Properties.Resources.DirectionalPad_BD);
-                        break;
-                    case "A":
-                        ChangeImageGamePad(Properties.Resources.DirectionalPad_E);
-                        break;
-                    case "D":
-                        ChangeImageGamePad(Properties.Resources.DirectionalPad_D);
-                        break;
-                    case "S":
-                        ChangeImageGamePad(Properties.Resources.DirectionalPad_B);
-                        break;
-                    case "W":
-                        ChangeImageGamePad(Properties.Resources.DirectionalPad_C);
-                        break;
+                    frm.Keybinds += "WAIT\n";
+                    ChangeImageGamePad(Properties.Resources.directionalpad);
+                    lstLastKeyBinds.Add(new Keybind { Quantidade = 1, Tecla = "WAIT" });
+                    frm.Keybinds = frm.Keybinds.Replace("\n", Environment.NewLine);
+
                 }
-
-                //if(lstLastKeyBinds.Count()>2)
-                //if (lstLastKeyBinds[lstLastKeyBinds.Count() - 2].Tecla == "WAIT")
-                //    teclas = "\n";
-
-                Console.WriteLine($"{quantidade} != 1 && {teclas} != \"\\n\" && {teclas} != \"WAIT\" - {quantidade != 1 && teclas != "\n" && teclas != "WAIT"}");
-                if (quantidade != 1 && teclas != "\n" && teclas != "WAIT")
-                {
-                    var temp = frm.Keybinds.Split(new string[] { "\n" }, StringSplitOptions.None);
-
-                    if (quantidade % 10 == 0)
-                        quantidade--;
-
-                    int lenghremove = ($"\n ({quantidade})").Length + 1;
-
-                    if (teclas.Length == 2 && quantidade > 1)
-                        lenghremove++;
-
-                    if (quantidade == 2)
-                        lenghremove = (teclas + "\n").Length;
-
-                    if (frm.Keybinds != "")
-                        frm.Keybinds = frm.Keybinds.Remove(frm.Keybinds.Length - (lenghremove), lenghremove) + $"{teclas} ({lstLastKeyBinds[lstLastKeyBinds.Count() - 1].Quantidade})\n";
-                }
-                else
-                    frm.Keybinds += teclas.ToString() + "\n";
-            }
-            else
-            {
-                frm.Keybinds += "WAIT\n";
-                ChangeImageGamePad(Properties.Resources.directionalpad);
-                lstLastKeyBinds.Add(new Keybind { Quantidade = 1, Tecla = "WAIT" });
-                frm.Keybinds = frm.Keybinds.Replace("\n", Environment.NewLine);
-
-            }
         }
 
         private static void ChangeImageGamePad(System.Drawing.Bitmap bitmap)
