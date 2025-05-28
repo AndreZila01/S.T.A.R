@@ -31,8 +31,16 @@ namespace ProjetoC_
         private void Tmr_Tick(object sender, EventArgs e)
         {
             //frm.Tag = ""; PEGAR VALOR EM frm.Tag!
-            CreatePnl("100", "520", "4555", "6000", "adad", "123123"); // cada segundo cria os objetos e manda para o pnlPrincipal
-            pnlPrincipal.AutoScrollPosition = new Point(0, pnlPrincipal.VerticalScroll.Maximum); // faz autoscroll com base na posição atal
+            string[] data = frm.txtData.Tag.ToString().Split(new string[] { "_" }, StringSplitOptions.None);
+            if (data.Length > 1)
+            {
+                //"{\"NumberPing\":\"" + values[1] + ",\"UltraSonic_sensor\":\"" + values[3] + ",\"Flame_sensor\":\"" + values[5] + ",\"Temperatura\":\"" + values[7] + ",\"Humidade\":\"" + values[9] + ",\"Sound_sensor\":\"" + values[11] + "},";
+                //"{\"UltraSonic_sensor\":" + values[1].Replace(" S", "") + ",\"Flame_sensor\":" + values[2].Replace(" T", "") + ",\"Temperatura\":" + values[3].Replace("H", "") + ",\"Humidade\":" + values[4].Replace(" F", "") + ",\"Sound_sensor\":\"" + values[5] + "\"},";
+                frm.txtData.Tag = "";
+                CreatePnl(pnlPrincipal.Controls.Count.ToString(), data[1].Replace(" S", ""), data[2].Replace(" T", ""), data[3].Replace("H", ""), data[4].Replace(" F", ""), data[5]); // cada segundo cria os objetos e manda para o pnlPrincipal
+                //pnlPrincipal.AutoScrollPosition = new Point(0, pnlPrincipal.VerticalScroll.Maximum); // faz autoscroll com base na posição atal
+
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,7 +49,7 @@ namespace ProjetoC_
         }
 
         //DONT TOUCH!
-        private void CreatePnl(string data, string ultrasonic, string flame, string temperatura, string humidade, string sound)
+        private void CreatePnl(string data, string ultrasonic, string sound, string temperatura, string humidade, string flame)
         {
             PictureBox pctSound = new PictureBox();
             PictureBox pctUltraSonic = new PictureBox();
@@ -68,7 +76,7 @@ namespace ProjetoC_
             pctSound.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 
 
-            pctUltraSonic.Anchor =AnchorStyles.Right;
+            pctUltraSonic.Anchor = AnchorStyles.Right;
             pctUltraSonic.Image = global::ProjetoC_.Properties.Resources.ultrasonic_sensor;
             pctUltraSonic.Location = new System.Drawing.Point(565, 9);
             pctUltraSonic.Name = "pctUltraSonic";
@@ -77,7 +85,7 @@ namespace ProjetoC_
             pctUltraSonic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 
 
-            pctFlame.Anchor =AnchorStyles.Right;
+            pctFlame.Anchor = AnchorStyles.Right;
             pctFlame.Image = global::ProjetoC_.Properties.Resources.smoke_detector;
             pctFlame.Location = new System.Drawing.Point(431, 9);
             pctFlame.Name = "pctFlame";
@@ -86,7 +94,7 @@ namespace ProjetoC_
             pctFlame.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 
 
-            pctTemperatura.Anchor =AnchorStyles.Right;
+            pctTemperatura.Anchor = AnchorStyles.Right;
             pctTemperatura.Image = global::ProjetoC_.Properties.Resources.thermometer;
             pctTemperatura.Location = new System.Drawing.Point(297, 9);
             pctTemperatura.Anchor = AnchorStyles.Right | AnchorStyles.Left;
@@ -95,7 +103,7 @@ namespace ProjetoC_
             pctTemperatura.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 
 
-            pctHumity.Anchor =AnchorStyles.Right;
+            pctHumity.Anchor = AnchorStyles.Right;
             pctHumity.Image = global::ProjetoC_.Properties.Resources.humidity;
             pctHumity.Location = new System.Drawing.Point(163, 9);
             pctHumity.Anchor = AnchorStyles.Right | AnchorStyles.Left;
@@ -104,7 +112,7 @@ namespace ProjetoC_
             pctHumity.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 
 
-            pctTime.Anchor =AnchorStyles.Right;
+            pctTime.Anchor = AnchorStyles.Right;
             pctTime.Image = global::ProjetoC_.Properties.Resources.chronometer;
             pctTime.Location = new System.Drawing.Point(29, 9);
             pctTime.Anchor = AnchorStyles.Right | AnchorStyles.Left;
@@ -113,7 +121,7 @@ namespace ProjetoC_
             pctTime.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 
 
-            lblTime.Anchor =AnchorStyles.Right;
+            lblTime.Anchor = AnchorStyles.Right;
             lblTime.AutoSize = true;
             lblTime.Location = new System.Drawing.Point(26, 71);
             lblTime.Name = "lblTime";
@@ -123,7 +131,7 @@ namespace ProjetoC_
             lblTime.Text = data;
 
 
-            lblHumidade.Anchor =AnchorStyles.Right;
+            lblHumidade.Anchor = AnchorStyles.Right;
             lblHumidade.AutoSize = true;
             lblHumidade.Location = new System.Drawing.Point(160, 71);
             lblHumidade.Name = "lblHumidade";
@@ -133,7 +141,7 @@ namespace ProjetoC_
             lblHumidade.Text = humidade;
 
 
-            lblUltraSonic.Anchor =AnchorStyles.Right;
+            lblUltraSonic.Anchor = AnchorStyles.Right;
             lblUltraSonic.AutoSize = true;
             lblUltraSonic.Anchor = AnchorStyles.Right | AnchorStyles.Left;
             lblUltraSonic.Location = new System.Drawing.Point(562, 71);
@@ -143,7 +151,7 @@ namespace ProjetoC_
             lblUltraSonic.Text = ultrasonic;
 
 
-            lnlTemperatura.Anchor =AnchorStyles.Right;
+            lnlTemperatura.Anchor = AnchorStyles.Right;
             lnlTemperatura.AutoSize = true;
             lnlTemperatura.Anchor = AnchorStyles.Right | AnchorStyles.Left;
             lnlTemperatura.TextAlign = ContentAlignment.MiddleCenter;
@@ -153,7 +161,7 @@ namespace ProjetoC_
             lnlTemperatura.Text = temperatura;
 
 
-            lblSensor.Anchor =AnchorStyles.Right;
+            lblSensor.Anchor = AnchorStyles.Right;
             lblSensor.AutoSize = true;
             lblSensor.Anchor = AnchorStyles.Right | AnchorStyles.Left;
             lblSensor.TextAlign = ContentAlignment.MiddleCenter;
@@ -163,7 +171,7 @@ namespace ProjetoC_
             lblSensor.Text = flame;
 
 
-            lblSound.Anchor =AnchorStyles.Right;
+            lblSound.Anchor = AnchorStyles.Right;
             lblSound.AutoSize = true;
             lblSound.Anchor = AnchorStyles.Right | AnchorStyles.Left;
             lblSound.TextAlign = ContentAlignment.MiddleCenter;
@@ -211,7 +219,7 @@ namespace ProjetoC_
             pnl.Controls.Add(tlpData);
 
 
-            pnlPrincipal.Controls.Add(pnl);            
+            pnlPrincipal.Controls.Add(pnl);
         }
 
         private void frmData_Resize(object sender, EventArgs e)

@@ -12,6 +12,7 @@ using System.Net;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -49,13 +50,6 @@ namespace ProjetoC_
             if (!bgwStart.IsBusy) // verifica se o backgroundworker está a correr
                 bgwStart.RunWorkerAsync(); // inicia o backgroundworker, executando primeiro o DoWork e depois o DoWorkRunWorkerAsync 
 
-            //    public int NumberPing
-            //public float UltraSonic_sensor 
-            //public int Flame_sensor 
-            //public float Temperatura 
-            //public float Humidade 
-            //public int Sound_sensor 
-            //txtData.Text = "[{\"NumberPing\":1, \"UltraSonic_sensor\":0.5, \"Flame_sensor\":0, \"Temperatura\":0.2, \"Humidade\":0.7, \"Sound_sensor\":1},{\"NumberPing\":1, \"UltraSonic_sensor\":0.5, \"Flame_sensor\":0, \"Temperatura\":0.2, \"Humidade\":0.7, \"Sound_sensor\":1}]";
             txtData.Text = "[";
         }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -87,6 +81,23 @@ namespace ProjetoC_
                 txtInput.SelectionStart = txtInput.Text.Length; // mete a progressbar no ultimo caracter para o textbox ficar em baixo
                 txtInput.ScrollToCaret();
             }
+            if(dataArduino != "")
+            {
+
+                //TODO: Acabar e discutir o melhor metodo de ler e enviar dados!
+
+                string[] values = dataArduino.Split(new string[] { "_" }, StringSplitOptions.None).ToArray(); // separas o texto todo, em "Data", metendo em string, graças ao [1]
+                txtData.Tag = dataArduino;
+                dataArduino = "";
+                string data = "{\"UltraSonic_sensor\":" + values[1].Replace(" S", "") + ",\"Flame_sensor\":\"" + values[5] + "\",\"Temperatura\":" + values[3].Replace("H", "") + ",\"Humidade\":" + values[4].Replace(" F", "") + ",\"Sound_sensor\":" + values[2].Replace(" T", "") + "},";
+                lblFlame.Text = Properties.Resources.StringFlameSensor +"" + values[5]; 
+                lblHumidade.Text = Properties.Resources.StringHumidity + "" + values[4].Replace(" F", ""); 
+                lblTemp.Text = Properties.Resources.StringTemperature + "" + values[3].Replace("H", ""); 
+                lblUSonic.Text = Properties.Resources.StringUltraSonicSensor + "" + values[1].Replace(" S", ""); 
+                lblSound.Text = Properties.Resources.StringSound + "" + values[2].Replace(" T", "");
+
+                txtData.Text += data; // formatar em json!
+            } 
         }
 
         private void button_Click(object sender, EventArgs e)
@@ -146,17 +157,24 @@ namespace ProjetoC_
                     IAFunction();
                     break;
                 case "btnExport": // se o botão tiver o nome de btnExport
-                    txtData.Text = txtData.Text.Substring(0, txtData.Text.Length - 1) + "]";
-                    new ExpImpData().ExcelData(txtData.Text.ToString()); // criamos uma ligação a class ExpImpData e exportamos os dados do txtData.Text para Excel.
+                    if (txtData.Text[txtData.Text.Length - 1] == ',')
+                        new ExpImpData().ExcelData(txtData.Text.Substring(0, txtData.Text.Length - 1) + "]");
+                    else
+                        new ExpImpData().ExcelData(txtData.Text + "]"); // criamos uma ligação a class ExpImpData e exportamos os dados do txtData.Text para Excel.
                     break;
                 case "btnClearData": // se o botão tiver o nome de btnClearData
                     lblFlame.Text = Properties.Resources.StringFlameSensor; lblHumidade.Text = Properties.Resources.StringHumidity; lblTemp.Text = Properties.Resources.StringTemperature; lblUSonic.Text = Properties.Resources.StringUltraSonicSensor; lblSound.Text = Properties.Resources.StringSound; txtData.Text = "";
+                    Keybinds = "";
+                    _com_.SendDataMQQT("/test/", "WAIT"); // envia o WAIT para o MQTT Broker, para parar de receber dados do Arduino
                     //Apagar a informação da DashBoard
                     break;
                 case "btnOffArd": // se o botão tiver o nome de btnOffArd
                     btnOnArd.Enabled = true; // ativa o botão de ligar ao arduino
                     btnOffArd.Enabled = false; // desliga o botão de desligar ao arduino
                     _com_.StopMQQT(this.Tag.ToString());
+
+                    pctIPV4.Image = Properties.Resources.Off; // muda a fotografia do pctIpv4 que está no Form1 para On
+                    pctIPV4.Tag = ""; // e altera a sua tag, para sabermos que está ligado
                     break;
                 case "btnImport": // se o botão tiver o nome de btnImport
                     try
@@ -221,23 +239,24 @@ namespace ProjetoC_
         {
             try
             {
-                txtData.Text = txtData.Text.Substring(0, txtData.Text.Length - 1) + "]";
+                if (txtData.Text[txtData.Text.Length-1] == ',')
+                    txtData.Text = txtData.Text.Substring(0, txtData.Text.Length - 1);
                 switch (((System.Windows.Forms.ToolStripMenuItem)sender).Tag) // Crias um ToolStripMMenuItem local e envias os dados para o sender e pegas no Tag
                 {
                     case "0": // se o tag for 0, entras
-                        new ExpImpData().ProtobufData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função ProtobufData e envias os dados da txtData.Text para exportar! 
+                        new ExpImpData().ProtobufData(txtData.Text.ToString() + "]"); // Crias localmente a class ExpImpData da função ProtobufData e envias os dados da txtData.Text para exportar! 
                                                                                 //Protobuf
                         break;
                     case "1":  // se o tag for 1, entras
-                        new ExpImpData().JSONData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função JSONData e envias os dados da txtData.Text para exportar!
+                        new ExpImpData().JSONData(txtData.Text.ToString() + "]"); // Crias localmente a class ExpImpData da função JSONData e envias os dados da txtData.Text para exportar!
                                                                             //JSON
                         break;
                     case "2":  // se o tag for 2, entras
-                        new ExpImpData().ExcelData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função ExcelData e envias os dados da txtData.Text para exportar!
+                        new ExpImpData().ExcelData(txtData.Text.ToString() + "]"); // Crias localmente a class ExpImpData da função ExcelData e envias os dados da txtData.Text para exportar!
                                                                              //Excel
                         break;
                     case "3":  // se o tag for 3, entras
-                        new ExpImpData().TXTData(txtData.Text.ToString()); // Crias localmente a class ExpImpData da função TXTData e envias os dados da txtData.Text para exportar!
+                        new ExpImpData().TXTData(txtData.Text.ToString() + "]"); // Crias localmente a class ExpImpData da função TXTData e envias os dados da txtData.Text para exportar!
                                                                            //Txt
                         break;
                     default: // caso contrario entras aqui!
@@ -267,35 +286,46 @@ namespace ProjetoC_
             _com_.SendDataMQQT("/test/", keybind);
         }
 
-        private void IAFunction()
+        private void Move(int quantidade, string tecla)
         {
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "A");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "D");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "D");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "A");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "A");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "W");
-            Thread.Sleep(200);
-            _com_.SendDataMQQT("/test/", "D");
-            Thread.Sleep(200);
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < quantidade; i++)
             {
-                _com_.SendDataMQQT("/test/", "W");
+                _com_.SendDataMQQT("/test/", tecla);
                 Thread.Sleep(200);
             }
+        }
+
+        private void IAFunction()
+        {
+            /*Inicio Barreira*/
+            Thread.Sleep(200);
+            Move(2,"W");
+            Thread.Sleep(200);
+            Move(2,"A");
+            Thread.Sleep(200);
+            Move(1,"W");
+            Thread.Sleep(200);
+            Move(2,"D");
+            Thread.Sleep(200);
+            Move(1,"W");
+            Thread.Sleep(200);
+            //ULTRAPASSOU A BARREIRA
+            Move(1, "D");
+            Thread.Sleep(200);
+            Move(1, "W");
+            //PASSOU BARREIRA E COMEÇA AS LOMBAS
+            Thread.Sleep(200);
+            Move(1,"A");
+            Thread.Sleep(200);
+            Move(1,"W");
+            Thread.Sleep(200);
+            //COMEÇO DAS LOMBAS
+            Move(4,"W");
+            Thread.Sleep(200);
+            //FIM DAS LOMBAS E COMEÇO RAMPA
+            Move(6, "W");
+            Thread.Sleep(200);
+
         }
 
         /*

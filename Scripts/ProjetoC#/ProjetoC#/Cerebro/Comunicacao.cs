@@ -12,6 +12,8 @@ using System.Runtime.Remoting;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ProjetoC_.Cerebro
 {
@@ -19,6 +21,7 @@ namespace ProjetoC_.Cerebro
     {
         MqttClient client;
         private Form1 frm;
+        private System.Windows.Forms.PictureBox pctIPV4;
         public void StartMQQT(string IPV4, string Path, Form1 frm)
         {
             try
@@ -33,7 +36,7 @@ namespace ProjetoC_.Cerebro
                 string clientId = Guid.NewGuid().ToString(); // diz o clientID!
                 client.Subscribe(new string[] { Path }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE }); // cria uma subscribe com o MQTT Cliente com o topic definido pelo cliente!
                 client.Connect(clientId); // cria a ligação
-                this.frm = frm; // e envia os valores do frm para this.frm
+                this.frm = frm;
             }
             catch (Exception ex)
             {
@@ -57,6 +60,12 @@ namespace ProjetoC_.Cerebro
 
         private void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
+            //D_62 S_64 T_24 H_51 F_F
+            //D em cm
+            //S em Hz
+            //T em Celsius
+            //H em %
+            //F em boolean
             string data = "" + System.Text.Encoding.Default.GetString(e.Message); // converte a mensagem de Binario para Texto em string
             Console.WriteLine("message=" + data);
             switch (data)
@@ -65,12 +74,8 @@ namespace ProjetoC_.Cerebro
                     frm.pctIPV4.Image = Properties.Resources.On; // muda a fotografia do pctIpv4 que está no Form1 para On
                     frm.pctIPV4.Tag = "1"; // e altera a sua tag, para sabermos que está ligado
                     break;
-                case string a when a.Contains("Data"): // se a informação contiver Data
-                    string values = a.Split(new string[] { "Data" }, StringSplitOptions.None)[1]; // separas o texto todo, em "Data", metendo em string, graças ao [1]
-                    frm.txtData.Text += "{\"NumberPing\":\"" + values + ",\"UltraSonic_sensor\":\"" + values + ",\"Flame_sensor\":\"" + values + ",\"Temperatura\":\"" + values + ",\"Humidade\":\"" + values + ",\"Sound_sensor\":\"" + values + "},"; // formatar em json!
-                    frm.txtData.Tag = "{\"NumberPing\":\"" + values + ",\"UltraSonic_sensor\":\"" + values + ",\"Flame_sensor\":\"" + values + ",\"Temperatura\":\"" + values + ",\"Humidade\":\"" + values + ",\"Sound_sensor\":\"" + values + "},";
-                    //TODO: Acabar e discutir o melhor metodo de ler e enviar dados!
-                    frm.dataArduino = ""; //?
+                case string a when a.Contains("D_") && a.Contains("S_"): // se a informação contiver Data
+                    frm.dataArduino = System.Text.Encoding.Default.GetString(e.Message);
                     break;
                 default:
                     break;

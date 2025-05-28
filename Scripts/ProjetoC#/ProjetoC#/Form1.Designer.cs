@@ -407,7 +407,7 @@
             // 
             this.btnInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInput.Font = new System.Drawing.Font("Microsoft YaHei", 9F);
+            this.btnInput.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F);
             this.btnInput.Location = new System.Drawing.Point(197, 357);
             this.btnInput.Name = "btnInput";
             this.btnInput.Size = new System.Drawing.Size(70, 23);
@@ -539,7 +539,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "S.T.A.R";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
