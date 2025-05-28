@@ -154,7 +154,7 @@ void virar_esquerda(){
 
   motor_esquerda_tras.backward();
   motor_esquerda_frente.backward();
-  delay(1000);
+  delay(500);
   stop();
 }
 
@@ -164,7 +164,7 @@ void virar_direito(){
 
   motor_esquerda_tras.forward();
   motor_esquerda_frente.forward();
-  delay(1000);
+  delay(500);
   stop();
 }
 
@@ -206,7 +206,7 @@ void loop() {
      int humidade = dhtSensor.readHumidity();
 
       //mandar dados de todos os sensores:
-          snprintf(msg, MSG_BUFFER_SIZE, "D_%.d S_%.d T_%.d H_%.d F_%c", distancia,som, temperatura, humidade, fogo);
+          snprintf(msg, MSG_BUFFER_SIZE, "D_%.d S_%.d T_%.d H_%.d F_%c", distancia, som, temperatura, humidade, fogo);
           Serial.print("Publicando: ");
           Serial.println(msg);
           client.publish("/test/", msg);
