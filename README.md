@@ -46,6 +46,8 @@ A documentação está disponivel [aqui](https://github.com/AndreZila01/S.T.A.R/
 # Authors
 
 [André Custódio](https://www.instagram.com/andrezila1/)
+
 [André Mendes](https://www.instagram.com/andre_gomes_7/)
+
 [Steve Vilas](https://x.com/Trasmiter)
 
